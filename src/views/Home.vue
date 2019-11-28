@@ -1,19 +1,28 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-          <b-alert show>Defaultdfgfdg Alertvoihoinoohdsfsdfvvv</b-alert>
+    <Hello msg="Welcome to Your Vue.js App" />
+    <FormParams />
+    <Calculate bla="blabla" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue"
+import Hello from "@/components/Hello.vue"
+import FormParams from "@/components/FormParams.vue"
+import Calculate from "@/components/Calculate.vue"
 
 export default {
   name: "home",
   components: {
-    HelloWorld,
+    Hello,
+    FormParams,
+    Calculate,
+  },
+  props: {
+    lastname: {
+      type: String,
+    },
   },
 }
 </script>

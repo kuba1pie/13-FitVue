@@ -5,7 +5,9 @@
       <router-link to="/user">User</router-link> |
       <router-link to="/diet">Diet</router-link>
     </div>
-    <router-view />
+    <b-container>
+      <router-view />
+    </b-container>
   </div>
 </template>
 
