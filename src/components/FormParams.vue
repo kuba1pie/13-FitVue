@@ -78,35 +78,16 @@
         <b-button type="reset" variant="danger">Reset</b-button>
         <b-button type="example" variant="info">Example</b-button>
       </b-form>
-<<<<<<< HEAD
     </div>
     <Calculate v-bind:formData="form" />
-=======
-      <b-card class="mt-3" header="Form Data Result">
-        <pre class="m-0">{{ form }}</pre>
-        <p>Name is: {{ form.name }}</p>
-        <p>Lastname is: {{ form.lastname }}</p>
-        <p>Email is: {{ form.email }}</p>
-        <p>Age is: {{ form.age }}</p>
-        <p>Weight is: {{ form.weight }}</p>
-        <p>Height is: {{ form.height }}</p>
-      </b-card>
-    </div>
-    <Calculate name="sony" />
->>>>>>> dc37017e2dd6f2f0107f0b2f8fbd5317e38e4c75
   </div>
 </template>
 
 <script lang="ts">
-<<<<<<< HEAD
 import Calculate from "@/components/Calculate.vue"
 export default {
   name: "FormParams",
   components: { Calculate },
-=======
-export default {
-  name: "home",
->>>>>>> dc37017e2dd6f2f0107f0b2f8fbd5317e38e4c75
   data() {
     return {
       show: true,
@@ -135,11 +116,7 @@ export default {
   },
   methods: {
     onSubmit() {
-<<<<<<< HEAD
       //submitUser: true
-=======
-      alert(JSON.stringify(this.form))
->>>>>>> dc37017e2dd6f2f0107f0b2f8fbd5317e38e4c75
     },
     onReset() {
       // Reset our form values
