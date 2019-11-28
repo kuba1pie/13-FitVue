@@ -1,0 +1,171 @@
+<template>
+  <div id="userForm">
+    <div>
+      <b-form
+        @submit="onSubmit"
+        @reset="onReset"
+        @example="onExample"
+        v-if="show"
+      >
+        <b-form-group
+          id="input-name"
+          label=""
+          label-for="input-name"
+          description=""
+        >
+          <b-form-input
+            id="input-1"
+            v-model="form.name"
+            type="text"
+            placeholder="Name"
+          ></b-form-input>
+          <b-form-input
+            id="input-2"
+            v-model="form.lastname"
+            type="text"
+            placeholder="Lastname"
+          ></b-form-input>
+          <b-form-input
+            id="input-3"
+            v-model="form.email"
+            type="email"
+            placeholder="Email"
+          ></b-form-input>
+          <b-form-input
+            id="input-4"
+            v-model="form.age"
+            type="number"
+            required
+            placeholder="Age"
+          ></b-form-input>
+          <b-form-radio-group
+            v-model="selected"
+            :options="genders"
+            name="form.gender"
+            required
+          ></b-form-radio-group>
+          <b-form-input
+            id="input-5"
+            v-model="form.weight"
+            type="number"
+            required
+            placeholder="Weight"
+          ></b-form-input>
+          <b-form-input
+            id="input-6"
+            v-model="form.height"
+            type="number"
+            required
+            placeholder="Height"
+          ></b-form-input>
+          <b-form-select
+            id="input-7"
+            v-model="form.activity"
+            :options="activity"
+            required
+          ></b-form-select>
+          <b-form-input
+            id="range-2"
+            v-model="value"
+            type="range"
+            min="0"
+            max="5"
+            step="0.5"
+          ></b-form-input>
+        </b-form-group>
+        <!-- Buttons -->
+        <b-button type="submit" variant="primary">Submit</b-button>
+        <b-button type="reset" variant="danger">Reset</b-button>
+        <b-button type="example" variant="info">Example</b-button>
+      </b-form>
+      <b-card class="mt-3" header="Form Data Result">
+        <pre class="m-0">{{ form }}</pre>
+        <p>Name is: {{ form.name }}</p>
+        <p>Lastname is: {{ form.lastname }}</p>
+        <p>Email is: {{ form.email }}</p>
+        <p>Age is: {{ form.age }}</p>
+        <p>Weight is: {{ form.weight }}</p>
+        <p>Height is: {{ form.height }}</p>
+      </b-card>
+    </div>
+    <Calculate name="sony" />
+  </div>
+</template>
+
+<script lang="ts">
+export default {
+  name: "home",
+  data() {
+    return {
+      show: true,
+      form: {
+        id: "default",
+        name: "",
+        lastname: "",
+        email: "",
+        age: null,
+        gender: null,
+        weight: null,
+        height: null,
+      },
+      activity: [
+        { value: null, text: "Select your activity" },
+        { value: 1, text: "None" },
+        { value: 1.2, text: "Low" },
+        { value: 1.4, text: "Moderate" },
+        { value: 1.6, text: "Athlete" },
+      ],
+      genders: [
+        { text: "Female", value: "female" },
+        { text: "Male", value: "male" },
+      ],
+    }
+  },
+  methods: {
+    onSubmit() {
+      alert(JSON.stringify(this.form))
+    },
+    onReset() {
+      // Reset our form values
+    },
+    onExample() {
+      return {
+        formData: {
+          id: "default",
+          name: "",
+          lastname: "",
+          email: "",
+          age: 23,
+          gender: "female",
+          weight: 23,
+          height: 23,
+        },
+      }
+    },
+  },
+  props: {
+    name: {
+      type: String,
+    },
+  },
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="sass">
+input
+  text-align: center
+h3
+  margin: 40px 0 0
+
+ul
+  list-style-type: none
+  padding: 0
+
+li
+  display: inline-block
+  margin: 0 10px
+
+a
+  color: #42b983
+</style>
