@@ -78,17 +78,8 @@
         <b-button type="reset" variant="danger">Reset</b-button>
         <b-button type="example" variant="info">Example</b-button>
       </b-form>
-      <b-card class="mt-3" header="Form Data Result">
-        <pre class="m-0">{{ form }}</pre>
-        <p>Name is: {{ form.name }}</p>
-        <p>Lastname is: {{ form.lastname }}</p>
-        <p>Email is: {{ form.email }}</p>
-        <p>Age is: {{ form.age }}</p>
-        <p>Weight is: {{ form.weight }}</p>
-        <p>Height is: {{ form.height }}</p>
-      </b-card>
     </div>
-    <Calculate v-bind:lastname="form" />
+    <Calculate v-bind:formData="form" />
   </div>
 </template>
 
