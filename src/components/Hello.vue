@@ -1,11 +1,13 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-  </div>
+	<div class="hello">
+		<h1>{{ msg }}</h1>
+		<p>
+			<a href="https://cli.vuejs.org" target="_blank" rel="noopener"
+				>vue-cli documentation</a
+			>.
+		</p>
+		<h3>Installed CLI Plugins</h3>
+	</div>
 </template>
 
 <script lang="ts">
