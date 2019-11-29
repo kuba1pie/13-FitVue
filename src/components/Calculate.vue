@@ -1,24 +1,31 @@
 <template>
-  <div class="results">
-    <b-card class="mt-3" header="formData Result">
-      <p>Name is: {{ formData.name }}</p>
-      <p>Lastname is: {{ formData.lastname }}</p>
-      <p>Email is: {{ formData.email }}</p>
-      <p>Age is: {{ formData.age }}</p>
-      <p>Weight is: {{ formData.weight }}</p>
-      <p>Height is: {{ formData.height }}</p>
-    </b-card>
+  <div class="results row">
+    <div class="mt-3 col-6" header="Input Data">
+      <p>Name is: {{ form.name }}</p>
+      <p>Lastname is: {{ form.lastname }}</p>
+      <p>Email is: {{ form.email }}</p>
+      <p>Age is: {{ form.age }}</p>
+      <p>Gender is: {{ form.gender }}</p>
+      <p>Weight is: {{ form.weight }}</p>
+      <p>Height is: {{ form.height }}</p>
+      <p>Activity is: {{ form.activity }}</p>
+    </div>
+    <div class="mt-3 col-6" header="Input Data">
+      <p>BMI is: {{ form.name }}</p>
+      <p>PPM is: {{ form.lastname }}</p>
+      <p>CPM is: {{ form.email }}</p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Calculate",
-  props: {
-    formDataData: {
-      type: String,
-    },
-  },
+	name: "Calculate",
+	props: {
+		form: {
+			type: String,
+		},
+	},
 }
 </script>
 

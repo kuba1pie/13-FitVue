@@ -79,7 +79,7 @@
         <b-button type="example" variant="info">Example</b-button>
       </b-form>
     </div>
-    <Calculate v-bind:formData="form" />
+    <Calculate v-bind:form="form" />
   </div>
 </template>
 
@@ -93,13 +93,14 @@ export default {
       show: true,
       form: {
         id: "default",
-        name: "",
-        lastname: "",
-        email: "",
-        age: null,
-        gender: null,
-        weight: null,
-        height: null,
+        name: "Lue",
+        lastname: "Schneider",
+        email: "Rosella93@yahoo.com",
+        age: 23,
+        gender: "female",
+        weight: 75,
+        height: 170,
+        activity: 1.4,
       },
       activity: [
         { value: null, text: "Select your activity" },
@@ -123,7 +124,7 @@ export default {
     },
     onExample() {
       return {
-        formData: {
+        form: {
           id: "default",
           name: "",
           lastname: "",
