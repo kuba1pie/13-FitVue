@@ -27,7 +27,7 @@ export default {
 	},
 	props: {
 		form: {
-			type: String,
+			type: Object,
 		},
 	},
 }

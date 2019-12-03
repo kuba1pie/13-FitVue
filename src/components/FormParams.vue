@@ -7,11 +7,11 @@
 					<b-form-input id="input-2" v-model="form.lastname" type="text" placeholder="Lastname"></b-form-input>
 					<b-form-input id="input-3" v-model="form.email" type="email" placeholder="Email"></b-form-input>
 					<b-form-input id="input-4" v-model="form.age" type="number" required placeholder="Age"></b-form-input>
-					<b-form-radio-group v-model="selected" :options="genders" name="form.gender" required></b-form-radio-group>
+					<b-form-radio-group v-model="form.selected" :options="genders" name="form.gender" required></b-form-radio-group>
 					<b-form-input id="input-5" v-model="form.weight" type="number" required placeholder="Weight"></b-form-input>
 					<b-form-input id="input-6" v-model="form.height" type="number" required placeholder="Height"></b-form-input>
 					<b-form-select id="input-7" v-model="form.activity" :options="activity" required></b-form-select>
-					<b-form-input id="range-2" v-model="value" type="range" min="0" max="5" step="0.5"></b-form-input>
+					<b-form-input id="range-2" v-model="form.value" type="range" min="0" max="5" step="0.5"></b-form-input>
 				</b-form-group>
 				<!-- Buttons -->
 				<b-button type="submit" variant="primary">Submit</b-button>
