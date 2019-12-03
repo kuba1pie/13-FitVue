@@ -19,19 +19,20 @@ export default new Vuex.Store({
 		},
 		REMOVE_LINK: (state, link) => {
 			state.links.splice(link, 1)
+			console.log('this')
 		},
 		REMOVE_ALL: state => {
 			state.links = []
 		},
 	},
 	actions: {
-		removeLinks: (context, link) => {
+		removeLink: (context, link) => {
 			context.commit("REMOVE_LINK", link)
 		},
 		removeAll({ commit }) {
 			return new Promise((resolve, reject) => {
 				setTimeout(() => {
-					commit("REMOVe_ALL")
+					commit("REMOVE_ALL")
 					resolve()
 				}, 1500)
 			})
