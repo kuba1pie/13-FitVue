@@ -19,7 +19,6 @@ export default new Vuex.Store({
 		},
 		REMOVE_LINK: (state, link) => {
 			state.links.splice(link, 1)
-			console.log('this')
 		},
 		REMOVE_ALL: state => {
 			state.links = []
