@@ -1,5 +1,6 @@
 <template>
 	<div class="results">
+		<b-button variant="info" @click="addForm">Wyślij</b-button>
 		<b-card class header="form Result">
 			<p>Name : {{ form.name }}</p>
 			<p>Lastname : {{ form.lastname }}</p>
@@ -37,19 +38,25 @@ export default {
 		}
 	},
 	components: { Stats },
-	computed: { ...mapState(["title", "links"]), ...mapGetters(["countLinks"]) },
+	computed: {
+		...mapState(["title", "links", "formularze"]),
+		...mapGetters(["countLinks"]),
+	},
 	methods: {
-		...mapMutations(["ADD_LINK"]),
+		...mapMutations(["ADD_LINK", "ADD_FORM"]),
 		...mapActions(["removeLink"]),
 		addLink: function() {
 			this.ADD_LINK(this.newLink)
 			this.newLink = ""
 		},
+		addForm: function() {
+			this.ADD_FORM(this.form)
+		},
 		onSubmit() {
 			//submitUser: true
-			let json = JSON.parse(JSON.stringify(this.form))
-			this.ADD_FORM(this.json)
-			console.log(json)
+			//let json = JSON.parse(JSON.stringify(this.form))
+			//this.ADD_FORM(this.json)
+			console.log("hello")
 		},
 		removeLinks: function(link) {
 			this.removeLink(link)

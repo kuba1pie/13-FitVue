@@ -33,4 +33,7 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped lang="sass">
+.stats
+	background-color: #4444
+</style>

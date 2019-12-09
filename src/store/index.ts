@@ -8,6 +8,8 @@ export default new Vuex.Store({
 		title: "My custom title",
 		links: ["http://google.com", "http://youtube.com", "http://maps.com"],
 		default: ["dfg"],
+		msg: "Blabla",
+		formularze: [{ id: "1", name: "user 1" }],
 	},
 	getters: {
 		countLinks: state => {
@@ -19,7 +21,8 @@ export default new Vuex.Store({
 			state.links.push(link)
 		},
 		ADD_FORM: (state, form) => {
-			state.default.push(form)
+			state.default.push("blabla")
+			state.formularze.push(form)
 		},
 		REMOVE_LINK: (state, link) => {
 			state.links.splice(link, 1)

@@ -1,7 +1,7 @@
 <template>
 	<div id="userForm" class="row">
 		<div class="col-6">
-			<b-form @submit="onSubmit" @reset="onReset" @example="onExample" v-if="show">
+			<b-form @reset="onReset" @example="onExample" v-if="show">
 				<b-form-group id="input-name" label label-for="input-name" description>
 					<b-form-input id="input-1" v-model="form.name" type="text" placeholder="Name"></b-form-input>
 					<b-form-input id="input-2" v-model="form.lastname" type="text" placeholder="Lastname"></b-form-input>
@@ -14,9 +14,10 @@
 					<b-form-input id="range-2" v-model="form.value" type="range" min="0" max="5" step="0.5"></b-form-input>
 				</b-form-group>
 				<!-- Buttons -->
-				<b-button type="submit" v-on:click="linkSubmit" variant="primary">Submit</b-button>
+				<b-button type="submit" variant="primary">Submit</b-button>
 				<b-button type="reset" variant="danger">Reset</b-button>
 				<b-button type="example" variant="info">Example</b-button>
+				
 			</b-form>
 		</div>
 		<CalculateData v-bind:form="form" class="col-6" />
@@ -59,23 +60,7 @@ export default {
 		onReset() {
 			// Reset our form values
 		},
-		onExample() {
-			return {
-				form: {
-					id: "default",
-					name: "",
-					lastname: "",
-					email: "",
-					age: 23,
-					gender: "female",
-					weight: 23,
-					height: 23,
-				},
-			}
-		},
-		onlinkSubmit() {
-			console.log("submit")
-		},
+		onExample() {},
 	},
 	props: {
 		name: {
