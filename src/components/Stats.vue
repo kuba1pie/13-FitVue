@@ -21,7 +21,7 @@ export default {
 		...mapActions(["removeAll"]),
 		removeAllLinks() {
 			this.removeAll().then(() => {
-				this.msg = "They have benn removes"
+				this.msg = "They have been removed."
 			})
 		},
 	},

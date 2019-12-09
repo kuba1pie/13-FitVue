@@ -45,6 +45,12 @@ export default {
 			this.ADD_LINK(this.newLink)
 			this.newLink = ""
 		},
+		onSubmit() {
+			//submitUser: true
+			let json = JSON.parse(JSON.stringify(this.form))
+			this.ADD_FORM(this.json)
+			console.log(json)
+		},
 		removeLinks: function(link) {
 			this.removeLink(link)
 		},

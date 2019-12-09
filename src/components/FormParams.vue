@@ -14,7 +14,7 @@
 					<b-form-input id="range-2" v-model="form.value" type="range" min="0" max="5" step="0.5"></b-form-input>
 				</b-form-group>
 				<!-- Buttons -->
-				<b-button type="submit" variant="primary">Submit</b-button>
+				<b-button type="submit" v-on:click="linkSubmit" variant="primary">Submit</b-button>
 				<b-button type="reset" variant="danger">Reset</b-button>
 				<b-button type="example" variant="info">Example</b-button>
 			</b-form>
@@ -56,9 +56,6 @@ export default {
 		}
 	},
 	methods: {
-		onSubmit() {
-			//submitUser: true
-		},
 		onReset() {
 			// Reset our form values
 		},
@@ -75,6 +72,9 @@ export default {
 					height: 23,
 				},
 			}
+		},
+		onlinkSubmit() {
+			console.log("submit")
 		},
 	},
 	props: {

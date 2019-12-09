@@ -7,6 +7,7 @@ export default new Vuex.Store({
 	state: {
 		title: "My custom title",
 		links: ["http://google.com", "http://youtube.com", "http://maps.com"],
+		default: ["dfg"],
 	},
 	getters: {
 		countLinks: state => {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
 	mutations: {
 		ADD_LINK: (state, link) => {
 			state.links.push(link)
+		},
+		ADD_FORM: (state, form) => {
+			state.default.push(form)
 		},
 		REMOVE_LINK: (state, link) => {
 			state.links.splice(link, 1)
