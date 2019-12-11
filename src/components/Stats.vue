@@ -4,10 +4,13 @@
 		<p>There are currenty {{ countLinks }}</p>
 		<button v-on:click="removeAllLinks">Remove All links</button>
 		<p>{{ msg }}</p>
+		<ul>
+			<li v-for="(formularz, index) in formularze" v-bind:key="index">dsddsdsd {{ formularz }}</li>
+		</ul>
 	</div>
 </template>
 <script>
-import { mapGetters, mapMutations, mapActions } from "vuex"
+import { mapGetters, mapMutations, mapActions, mapState } from "vuex"
 export default {
 	name: "Stats",
 	data() {
@@ -15,7 +18,10 @@ export default {
 			msg: "",
 		}
 	},
-	computed: { ...mapGetters(["countLinks"]) },
+	computed: {
+		...mapGetters(["countLinks"]),
+		...mapState(["title", "links", "formularze"]),
+	},
 	methods: {
 		...mapMutations(["REMOVE_ALL"]),
 		...mapActions(["removeAll"]),
