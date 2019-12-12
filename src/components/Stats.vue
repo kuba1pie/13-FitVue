@@ -4,9 +4,11 @@
 		<p>There are currenty {{ countLinks }}</p>
 		<button v-on:click="removeAllLinks">Remove All links</button>
 		<p>{{ msg }}</p>
-		<ul>
-			<li v-for="(formularz, index) in formularze" v-bind:key="index">dsddsdsd {{ formularz }}</li>
-		</ul>
+		<div class="element" v-for="(formularz, index) in formularze" v-bind:key="index">
+			<h1>Formularz: {{ index }}</h1>
+			<p>{{ formularz.name }}</p>
+			<p>{{ formularz.lastname }}</p>
+		</div>
 	</div>
 </template>
 <script>

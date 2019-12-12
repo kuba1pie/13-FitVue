@@ -1,47 +1,21 @@
 import Vue from "vue"
 import Vuex from "vuex"
+import state from "./state"
+import getters from "./getters"
+import actions from "./actions"
+import mutations from "./mutations"
+
+
+//import products from './modules/products'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-	state: {
-		title: "My custom title",
-		links: ["http://google.com", "http://youtube.com", "http://maps.com"],
-		default: ["dfg"],
-		msg: "Blabla",
-		formularze: [{ id: "1", name: "user 1" }],
-	},
-	getters: {
-		countLinks: state => {
-			return state.links.length
-		},
-	},
-	mutations: {
-		ADD_LINK: (state, link) => {
-			state.links.push(link)
-		},
-		ADD_FORM: (state, form) => {
-			state.default.push("blabla")
-			state.formularze.push(form)
-		},
-		REMOVE_LINK: (state, link) => {
-			state.links.splice(link, 1)
-		},
-		REMOVE_ALL: state => {
-			state.links = []
-		},
-	},
-	actions: {
-		removeLink: (context, link) => {
-			context.commit("REMOVE_LINK", link)
-		},
-		removeAll({ commit }) {
-			return new Promise((resolve, reject) => {
-				setTimeout(() => {
-					commit("REMOVE_ALL")
-					resolve()
-				}, 1500)
-			})
-		},
-	},
+	state,
+	getters,
+	mutations,
+	actions,
+	//modules: {
+		//products
+	//}
 })
