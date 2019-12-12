@@ -29,7 +29,7 @@
 
 <script>
 import Stats from "@/components/Stats.vue"
-import { mapState, mapMutations, mapGetters, mapActions } from "vuex"
+import { mapState, mapMutations, mapGetters, mapActions, userForms } from "vuex"
 export default {
 	name: "CalculateData",
 	data() {
@@ -39,7 +39,7 @@ export default {
 	},
 	components: { Stats },
 	computed: {
-		...mapState(["title", "links", "formularze"]),
+		...mapState(["title", "links", "formularze", "forms"]),
 		...mapGetters(["countLinks"]),
 	},
 	methods: {
@@ -56,7 +56,6 @@ export default {
 			//submitUser: true
 			//let json = JSON.parse(JSON.stringify(this.form))
 			//this.ADD_FORM(this.json)
-			console.log("hello")
 		},
 		removeLinks: function(link) {
 			this.removeLink(link)

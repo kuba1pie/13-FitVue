@@ -4,11 +4,12 @@
 		<p>There are currenty {{ countLinks }}</p>
 		<button v-on:click="removeAllLinks">Remove All links</button>
 		<p>{{ msg }}</p>
-		<div class="element" v-for="(formularz, index) in formularze" v-bind:key="index">
+		<b-table striped hover :fields="fields" :items="formularze"></b-table>
+		<!-- 		<div class="element" v-for="(formularz, index) in formularze" v-bind:key="index">
 			<h1>Formularz: {{ index }}</h1>
-			<p>{{ formularz.name }}</p>
+			<p>{{ formularz }}</p>
 			<p>{{ formularz.lastname }}</p>
-		</div>
+		</div>-->
 	</div>
 </template>
 <script>
@@ -18,14 +19,38 @@ export default {
 	data() {
 		return {
 			msg: "",
+			fields: [
+				"name",
+				"lastname",
+				"weight",
+				"height",
+				{
+					key: "birthYear",
+					label: "Calculated BMI",
+					formatter: (value, key, item) => {
+						//return new Date().getFullYear() - item.age
+						return Number(
+							(item.weight / (item.height / 100) / (item.height / 100)).toFixed(
+								1
+							)
+						)
+					},
+				},
+			],
 		}
 	},
 	computed: {
 		...mapGetters(["countLinks"]),
-		...mapState(["title", "links", "formularze"]),
+		...mapState([
+			"title",
+			"links",
+			"formularze",
+			"forms",
+			" forms: state => state.forms.all",
+		]),
 	},
 	methods: {
-		...mapMutations(["REMOVE_ALL"]),
+		...mapMutations(["REMOVE_ALL", "ADD_FORM"]),
 		...mapActions(["removeAll"]),
 		removeAllLinks() {
 			this.removeAll().then(() => {
