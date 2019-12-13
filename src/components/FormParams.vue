@@ -17,7 +17,6 @@
 				<b-button type="submit" variant="primary">Submit</b-button>
 				<b-button type="reset" variant="danger">Reset</b-button>
 				<b-button type="example" variant="info">Example</b-button>
-				
 			</b-form>
 		</div>
 		<CalculateData v-bind:form="form" class="col-6" />
@@ -42,6 +41,7 @@ export default {
 				weight: 58,
 				height: 166,
 				activity: 1.4,
+				value: 3,
 			},
 			activity: [
 				{ value: null, text: "Select your activity" },

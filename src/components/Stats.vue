@@ -1,15 +1,8 @@
 <template>
 	<div class="stats">
-		<h1>A different component</h1>
-		<p>There are currenty {{ countLinks }}</p>
-		<button v-on:click="removeAllLinks">Remove All links</button>
+		<h1>Stats component</h1>
 		<p>{{ msg }}</p>
 		<b-table striped hover :fields="fields" :items="formularze"></b-table>
-		<!-- 		<div class="element" v-for="(formularz, index) in formularze" v-bind:key="index">
-			<h1>Formularz: {{ index }}</h1>
-			<p>{{ formularz }}</p>
-			<p>{{ formularz.lastname }}</p>
-		</div>-->
 	</div>
 </template>
 <script>
@@ -28,7 +21,6 @@ export default {
 					key: "birthYear",
 					label: "Calculated BMI",
 					formatter: (value, key, item) => {
-						//return new Date().getFullYear() - item.age
 						return Number(
 							(item.weight / (item.height / 100) / (item.height / 100)).toFixed(
 								1
@@ -43,20 +35,13 @@ export default {
 		...mapGetters(["countLinks"]),
 		...mapState([
 			"title",
-			"links",
 			"formularze",
 			"forms",
 			" forms: state => state.forms.all",
 		]),
 	},
 	methods: {
-		...mapMutations(["REMOVE_ALL", "ADD_FORM"]),
-		...mapActions(["removeAll"]),
-		removeAllLinks() {
-			this.removeAll().then(() => {
-				this.msg = "They have been removed."
-			})
-		},
+		...mapMutations(["ADD_FORM"]),
 	},
 	props: {
 		form: {

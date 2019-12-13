@@ -1,29 +1,12 @@
 <template>
 	<div class="results">
-		<b-button variant="info" @click="addForm">Wyślij</b-button>
 		<b-card class header="form Result">
 			<p>Name : {{ form.name }}</p>
 			<p>Lastname : {{ form.lastname }}</p>
-			<p>Email : {{ form.email }}</p>
-			<p>Age : {{ form.age }}</p>
-			<p>Weight : {{ form.weight }}</p>
-			<p>Height : {{ form.height }}</p>
-			<p>Activity : {{ form.activity }}</p>
-			<p>Value : {{ form.value }}</p>
+			<b-button variant="info" @click="addForm">Wyślij</b-button>
 		</b-card>
-		<div class="down">
-			<form @submit.prevent="addLink">
-				<input class="link-layout" type="text" placeholder="Add a link" v-model="newLink" />
-			</form>
-			{{ title }}
-			<ul>
-				<li v-for="(link, index) in links" v-bind:key="index">
-					{{ link }}
-					<button v-on:click="removeLinks(index)" class="rm">Remove</button>
-				</li>
-			</ul>
-		</div>
-		<Stats v-bind:form="form" class="col-6" />
+
+		<Stats v-bind:form="form" class="col-12" />
 	</div>
 </template>
 
@@ -39,16 +22,11 @@ export default {
 	},
 	components: { Stats },
 	computed: {
-		...mapState(["title", "links", "formularze", "forms"]),
+		...mapState(["title", "formularze", "forms"]),
 		...mapGetters(["countLinks"]),
 	},
 	methods: {
-		...mapMutations(["ADD_LINK", "ADD_FORM"]),
-		...mapActions(["removeLink"]),
-		addLink: function() {
-			this.ADD_LINK(this.newLink)
-			this.newLink = ""
-		},
+		...mapMutations(["ADD_FORM"]),
 		addForm: function() {
 			this.ADD_FORM(this.form)
 		},
@@ -56,9 +34,6 @@ export default {
 			//submitUser: true
 			//let json = JSON.parse(JSON.stringify(this.form))
 			//this.ADD_FORM(this.json)
-		},
-		removeLinks: function(link) {
-			this.removeLink(link)
 		},
 	},
 	props: {
