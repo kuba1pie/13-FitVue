@@ -32,7 +32,6 @@ export default {
 		return {
 			show: true,
 			form: {
-				id: "default",
 				name: "Reta",
 				lastname: "Nienow",
 				email: "Laverne55@yahoo.com",

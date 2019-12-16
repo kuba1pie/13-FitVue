@@ -1,10 +1,10 @@
 <template>
 	<div>
-		<ul class="test-list" v-for="todo in todosList" :key="todo.id">
-			<li class="test-list--item">
-				{{ todo.title }}
-			</li>
-		</ul>
+		<b-table striped hover :items="usersList">
+			<template v-slot:cell(_id)="data">
+				<router-link :to="`/user/${data.value}`">{{ data.value }}</router-link>
+			</template>
+		</b-table>
 	</div>
 </template>
 
@@ -14,16 +14,15 @@ import axios from "axios"
 export default {
 	data() {
 		return {
-			todosList: [],
+			usersList: [],
 		}
 	},
+
 	mounted() {
 		axios
-			.get("https://jsonbox.io/box_d2944147cb0e6fdb71df")
+			.get("https://jsonbox.io/box_5da249ea28d2b15aa1a8/")
 			.then(response => {
-				//console.log(response)
-				this.todosList = [...response.data].slice(0, 5)
-				console.log(todosList)
+				this.usersList = [...response.data]
 			})
 			.catch(err => {
 				// Manage the state of the application if the request
@@ -33,41 +32,4 @@ export default {
 }
 </script>
 <style>
-.test-list {
-	font-family: Roboto;
-	list-style: none;
-	margin: 20px auto;
-	width: 50%;
-}
-
-.test-list--item {
-	border: 1px solid rgb(41, 41, 41);
-	border-radius: 5px;
-	text-align: center;
-	display: block;
-	box-shadow: 2px 2px rgba(138, 124, 124, 0.4);
-}
-
-.test-list--id {
-	font-weight: 300;
-	margin: 10px auto;
-}
-
-.test-list--title {
-	font-weight: 500;
-	margin: 20px auto;
-	text-transform: capitalize;
-}
-
-.test-list--complete {
-	font-weight: 600;
-	margin: 10px auto;
-	color: #56ca86;
-}
-
-.test-list--incomplete {
-	font-weight: 600;
-	margin: 10px auto;
-	color: #ca5656;
-}
 </style>

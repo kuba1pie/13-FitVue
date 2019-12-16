@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Diet from "../views/Diet.vue";
 import User from "../views/User.vue";
+import Users from "../views/Users.vue";
 
 Vue.use(VueRouter);
 
@@ -13,9 +14,14 @@ const routes = [
     component: Home
   },
   {
-    path: "/user",
+    path: "/user/:id",
     name: "user",
     component: User
+  },
+  {
+    path: "/users",
+    name: "users",
+    component: Users
   },
   {
     path: "/diet",
