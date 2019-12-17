@@ -19,7 +19,7 @@
 
 <script>
 import axios from "axios"
-//import router from "vue-router"
+import router from "vue-router"
 import FormParams from "@/components/FormParams.vue"
 import { mapState, mapGetters } from "vuex"
 export default {
@@ -44,7 +44,7 @@ export default {
 			axios.delete(
 				"https://jsonbox.io/box_5da249ea28d2b15aa1a8/" + this.$route.params.id
 			)
-			//router.push({ path: "/users" })
+			this.$router.push("../users")
 			//.then(res => console.log(res.data))
 		},
 		onEdit() {},

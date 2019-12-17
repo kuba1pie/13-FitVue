@@ -31,6 +31,7 @@ export default {
 			//this.ADD_FORM(this.form)
 			axios
 				.post("https://jsonbox.io/box_5da249ea28d2b15aa1a8", this.form)
+				.get("https://jsonbox.io/box_5da249ea28d2b15aa1a8/")
 				.then(function(response) {
 					console.log(response)
 				})

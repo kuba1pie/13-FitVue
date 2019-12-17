@@ -25,7 +25,6 @@
 					<b-form-select id="input-7" v-model="userData.activity" :options="activity" required></b-form-select>
 					<b-form-input id="range-2" v-model="userData.value" type="range" min="0" max="5" step="0.5"></b-form-input>
 				</b-form-group>
-				<!-- Buttons -->
 			</b-form>
 		</div>
 		<b-button type="submit" @click="onSubmit" variant="primary">Submit</b-button>
@@ -52,20 +51,32 @@ export default {
 				{ text: "Female", value: "female" },
 				{ text: "Male", value: "male" },
 			],
+			usersList: [],
 		}
 	},
 	methods: {
-		onReset() {
-		},
+		onReset() {},
 		onSubmit: function() {
-				axios
-					.post("https://jsonbox.io/box_5da249ea28d2b15aa1a8", this.userData)
-					.then(function(response) {
-						console.log(response)
-					})
-					.catch(function(error) {
-						console.log(error)
-					})
+			axios
+				.post("https://jsonbox.io/box_5da249ea28d2b15aa1a8", this.userData)
+				.then(function(response) {
+					console.log(response)
+					this.reload()
+				})
+				.catch(function(error) {
+					console.log(error)
+				})
+		},
+		reload: function() {
+			axios
+				.get("https://jsonbox.io/box_5da249ea28d2b15aa1a8/")
+				.then(response => {
+					this.usersList = [...response.data]
+				})
+				.catch(err => {
+					// Manage the state of the application if the request
+					// has failed
+				})
 		},
 		onExample() {},
 	},
