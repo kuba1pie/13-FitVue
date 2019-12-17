@@ -5,7 +5,6 @@
 			<p>Lastname : {{ form.lastname }}</p>
 			<b-button variant="info" @click="addForm">Wyślij</b-button>
 		</b-card>
-
 		<!-- <Stats v-bind:form="form" class="col-12" /> -->
 	</div>
 </template>

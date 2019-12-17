@@ -1,6 +1,5 @@
 export default {
-  form: {
-    name: "Reta",
+    name: "Retdadada",
     lastname: "Nienow",
     email: "Laverne55@yahoo.com",
     age: 21,
@@ -9,5 +8,4 @@ export default {
     height: 166,
     activity: 1.4,
     value: 3,
-  },
-}
+  }

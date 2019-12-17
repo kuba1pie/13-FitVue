@@ -1,5 +1,7 @@
 <template>
 	<div>
+		{{ userData._id }}
+		<br />
 		{{ userData.name }}
 		<br />
 		{{ userData.lastname }}
@@ -8,8 +10,12 @@
 		<br />
 		{{ userData.height }}
 		<br />
-		<b-button variant="info" @click="onEdit">Edit</b-button>
+		<b-button v-b-toggle.collapse-1 variant="info" @click="onEdit">Edit</b-button>
 		<b-button v-b-toggle.collapse-2 class="m-1">Delete</b-button>
+		<b-collapse id="collapse-1" class="border border-secondary p-5">
+			<FormParams v-bind:userData="userData" />
+			<b-button variant="danger" @click="onSave">Save</b-button>
+		</b-collapse>
 		<b-collapse id="collapse-2" class="border border-secondary p-5">
 			Do you want to delete this user?
 			<b-button variant="danger" @click="onDelete">Yes</b-button>
@@ -20,7 +26,7 @@
 
 <script>
 import axios from "axios"
-
+import FormParams from "@/components/FormParams.vue"
 export default {
 	data() {
 		return {
@@ -28,6 +34,9 @@ export default {
 		}
 	},
 	name: "User",
+	components: {
+		FormParams,
+	},
 	methods: {
 		onDelete() {
 			const animal = [this.$route.params.id]
@@ -37,7 +46,7 @@ export default {
 			)
 			//.then(res => console.log(res.data))
 		},
-		onEdit() {
+		onSave() {
 			console.log("edit")
 		},
 	},

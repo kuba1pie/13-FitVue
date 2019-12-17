@@ -3,45 +3,42 @@
 		<div class="col-6">
 			<b-form @reset="onReset" @example="onExample" v-if="show">
 				<b-form-group id="input-name" label label-for="input-name" description>
-					<b-form-input id="input-1" v-model="form.name" type="text" placeholder="Name"></b-form-input>
-					<b-form-input id="input-2" v-model="form.lastname" type="text" placeholder="Lastname"></b-form-input>
-					<b-form-input id="input-3" v-model="form.email" type="email" placeholder="Email"></b-form-input>
-					<b-form-input id="input-4" v-model="form.age" type="number" required placeholder="Age"></b-form-input>
-					<b-form-radio-group v-model="form.selected" :options="genders" name="form.gender" required></b-form-radio-group>
-					<b-form-input id="input-5" v-model="form.weight" type="number" required placeholder="Weight"></b-form-input>
-					<b-form-input id="input-6" v-model="form.height" type="number" required placeholder="Height"></b-form-input>
-					<b-form-select id="input-7" v-model="form.activity" :options="activity" required></b-form-select>
-					<b-form-input id="range-2" v-model="form.value" type="range" min="0" max="5" step="0.5"></b-form-input>
+					<b-form-input id="input-1" v-model="userData.name" type="text" placeholder="Name"></b-form-input>
+					<b-form-input id="input-2" v-model="userData.lastname" type="text" placeholder="Lastname"></b-form-input>
+					<b-form-input id="input-3" v-model="userData.email" type="email" placeholder="Email"></b-form-input>
+					<b-form-input id="input-4" v-model="userData.age" type="number" required placeholder="Age"></b-form-input>
+					<b-form-radio-group v-model="userData.selected" :options="genders" name="form.gender" required></b-form-radio-group>
+					<b-form-input
+						id="input-5"
+						v-model="userData.weight"
+						type="number"
+						required
+						placeholder="Weight"
+					></b-form-input>
+					<b-form-input
+						id="input-6"
+						v-model="userData.height"
+						type="number"
+						required
+						placeholder="Height"
+					></b-form-input>
+					<b-form-select id="input-7" v-model="userData.activity" :options="activity" required></b-form-select>
+					<b-form-input id="range-2" v-model="userData.value" type="range" min="0" max="5" step="0.5"></b-form-input>
 				</b-form-group>
 				<!-- Buttons -->
-				<b-button type="submit" variant="primary">Submit</b-button>
-				<b-button type="reset" variant="danger">Reset</b-button>
-				<b-button type="example" variant="info">Example</b-button>
 			</b-form>
 		</div>
-		<CalculateData v-bind:form="form" class="col-6" />
 	</div>
 </template>
 
 <script lang="ts">
-import CalculateData from "@/components/CalculateData.vue"
+import { mapState, mapMutations, mapGetters, mapActions, userForms } from "vuex"
+import firstForm from "./firstForm"
 export default {
 	name: "FormParams",
-	components: { CalculateData },
 	data() {
 		return {
 			show: true,
-			form: {
-				name: "Reta",
-				lastname: "Nienow",
-				email: "Laverne55@yahoo.com",
-				age: 21,
-				gender: "female",
-				weight: 58,
-				height: 166,
-				activity: 1.4,
-				value: 3,
-			},
 			activity: [
 				{ value: null, text: "Select your activity" },
 				{ value: 1, text: "None" },
@@ -61,8 +58,13 @@ export default {
 		},
 		onExample() {},
 	},
+	mounted() {},
 	props: {
 		name: {
+			type: String,
+		},
+		userData: {
+			//default: firstForm,
 			type: String,
 		},
 	},
