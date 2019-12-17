@@ -28,11 +28,13 @@
 				<!-- Buttons -->
 			</b-form>
 		</div>
+		<b-button type="submit" @click="onSubmit" variant="primary">Submit</b-button>
 	</div>
 </template>
 
 <script lang="ts">
-import { mapState, mapMutations, mapGetters, mapActions, userForms } from "vuex"
+import axios from "axios"
+import { mapState, mapMutations, mapGetters, mapActions } from "vuex"
 import firstForm from "./firstForm"
 export default {
 	name: "FormParams",
@@ -54,7 +56,16 @@ export default {
 	},
 	methods: {
 		onReset() {
-			// Reset our form values
+		},
+		onSubmit: function() {
+				axios
+					.post("https://jsonbox.io/box_5da249ea28d2b15aa1a8", this.userData)
+					.then(function(response) {
+						console.log(response)
+					})
+					.catch(function(error) {
+						console.log(error)
+					})
 		},
 		onExample() {},
 	},
@@ -64,8 +75,8 @@ export default {
 			type: String,
 		},
 		userData: {
-			//default: firstForm,
-			type: String,
+			type: Object,
+			default: () => firstForm,
 		},
 	},
 }
