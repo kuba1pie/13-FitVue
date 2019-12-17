@@ -44,8 +44,7 @@ export default {
 			axios.delete(
 				"https://jsonbox.io/box_5da249ea28d2b15aa1a8/" + this.$route.params.id
 			)
-			this.$router.push("../users")
-			//.then(res => console.log(res.data))
+			setTimeout(() => this.$router.push({ path: "../users" }), 200)
 		},
 		onEdit() {},
 		onSave() {
