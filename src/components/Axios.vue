@@ -34,8 +34,11 @@ export default {
 		},
 	},
 	mounted() {
-		axios
-			.get("https://jsonbox.io/box_5da249ea28d2b15aa1a8/")
+		axios({
+			method: "get",
+			url: "https://jsonbox.io/box_5da249ea28d2b15aa1a8/",
+			timeout: "0",
+		})
 			.then(response => {
 				this.usersList = [...response.data]
 				this.saveData()

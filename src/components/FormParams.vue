@@ -61,22 +61,12 @@ export default {
 				.post("https://jsonbox.io/box_5da249ea28d2b15aa1a8", this.userData)
 				.then(function(response) {
 					console.log(response)
-					this.reload()
+					//this.reload()
 				})
 				.catch(function(error) {
 					console.log(error)
 				})
-		},
-		reload: function() {
-			axios
-				.get("https://jsonbox.io/box_5da249ea28d2b15aa1a8/")
-				.then(response => {
-					this.usersList = [...response.data]
-				})
-				.catch(err => {
-					// Manage the state of the application if the request
-					// has failed
-				})
+			setTimeout(() => this.$emit("clicked", "someValue"), 200)
 		},
 		onExample() {},
 	},
