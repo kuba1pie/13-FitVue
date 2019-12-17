@@ -75,7 +75,6 @@ export default {
 			type: String,
 		},
 		userData: {
-			type: Object,
 			default: () => firstForm,
 		},
 	},

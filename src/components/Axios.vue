@@ -10,6 +10,7 @@
 
 <script>
 import axios from "axios"
+import { mapState, mapMutations } from "vuex"
 
 export default {
 	data() {
@@ -17,12 +18,27 @@ export default {
 			usersList: [],
 		}
 	},
-
+	computed: {
+		...mapState(["usersData"]),
+		//...mapGetters(["usersData"]),
+	},
+	mutations: {
+		addUsers(state, users) {
+			state.usersData.push(users)
+		},
+	},
+	methods: {
+		...mapMutations(["SAVE_DATA"]),
+		saveData: function() {
+			this.SAVE_DATA(this.usersList)
+		},
+	},
 	mounted() {
 		axios
 			.get("https://jsonbox.io/box_5da249ea28d2b15aa1a8/")
 			.then(response => {
 				this.usersList = [...response.data]
+				this.saveData()
 			})
 			.catch(err => {
 				// Manage the state of the application if the request

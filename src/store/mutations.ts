@@ -1,5 +1,5 @@
 export default {
-	ADD_LINK: (state, link) => {
+	/* ADD_LINK: (state, link) => {
 		state.links.push(link)
 	},
 	ADD_FORM: (state, form) => {
@@ -10,5 +10,8 @@ export default {
 	},
 	REMOVE_ALL: state => {
 		state.links = []
+	}, */
+	SAVE_DATA: (state, data) => {
+		state.usersData = data
 	},
 }

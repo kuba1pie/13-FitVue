@@ -1,5 +1,8 @@
 export default {
-	countLinks: state => {
+	/* countLinks: state => {
 		return state.links.length
+	}, */
+	usersData: state => {
+		return state.usersData
 	},
 }

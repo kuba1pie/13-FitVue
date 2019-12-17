@@ -1,15 +1,8 @@
 <template>
 	<div>
-		{{ userData._id }}
-		<br />
-		{{ userData.name }}
-		<br />
-		{{ userData.lastname }}
-		<br />
-		{{ userData.age }}
-		<br />
-		{{ userData.height }}
-		<br />
+		<h1>User</h1>
+		<b-table striped hover :items="reversedMessage"></b-table>
+
 		<b-button v-b-toggle.collapse-1 variant="info" @click="onEdit">Edit</b-button>
 		<b-button v-b-toggle.collapse-2 class="m-1">Delete</b-button>
 		<b-collapse id="collapse-1" class="border border-secondary p-5">
@@ -28,20 +21,26 @@
 import axios from "axios"
 //import router from "vue-router"
 import FormParams from "@/components/FormParams.vue"
+import { mapState, mapGetters } from "vuex"
 export default {
+	name: "User",
 	data() {
 		return {
 			userData: [],
+			userID: this.$route.params.id,
 		}
 	},
-	name: "User",
 	components: {
 		FormParams,
 	},
+	computed: {
+		...mapState(["usersData"]),
+		reversedMessage: function() {
+			return this.usersData.filter(x => x._id === this.userID)
+		},
+	},
 	methods: {
 		onDelete() {
-			const animal = [this.$route.params.id]
-			console.log(animal)
 			axios.delete(
 				"https://jsonbox.io/box_5da249ea28d2b15aa1a8/" + this.$route.params.id
 			)
@@ -52,19 +51,6 @@ export default {
 		onSave() {
 			console.log("edit")
 		},
-	},
-	mounted() {
-		axios
-			.get(
-				"https://jsonbox.io/box_5da249ea28d2b15aa1a8/" + this.$route.params.id
-			)
-			.then(response => {
-				this.userData = response.data
-			})
-			.catch(err => {
-				// Manage the state of the application if the request
-				// has failed
-			})
 	},
 }
 </script>

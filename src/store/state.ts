@@ -1,9 +1,7 @@
-import firstForm from "./modules/userForms/firstForm"
 export default {
-  title: "My custom title",
-  links: ["http://google.com", "http://youtube.com", "http://maps.com"],
-  default: ["dfg"],
-  msg: "Blabla",
-  formularze: [firstForm],
+  //title: "My custom title",
+  //default: ["dfg"],
+  //msg: "Blabla",
+  //formularze: [firstForm],
+  usersData: ["store"],
 }
-//dd
