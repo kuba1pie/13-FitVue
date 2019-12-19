@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<b-table striped hover :items="usersList">
-			<template v-slot:cell(_id)="data">
-				<router-link :to="`/user/${data.value}`">{{ data.value }}</router-link>
+		<b-table striped hover :items="usersList" :fields="fields">
+			<template v-slot:cell(fullname)="data">
+				<router-link :to="`/user/${data.item._id}`">{{ data.value }}</router-link>
 			</template>
 		</b-table>
 	</div>
@@ -16,6 +16,29 @@ export default {
 	data() {
 		return {
 			usersList: [],
+			fields: [
+				{
+					key: "fullname",
+					label: "Fullname:",
+					sortable: true,
+					formatter: (value, key, item) => {
+						return item.name + " " + item.lastname
+					},
+				},
+				{
+					key: "birthYear",
+					label: "Birth: ",
+					sortable: true,
+					formatter: (value, key, item) => {
+						return new Date().getFullYear() - new Date().getFullYear(item.age)
+					},
+				},
+				{
+					key: "gender",
+					label: "Gender:",
+					sortable: true,
+				},
+			],
 		}
 	},
 	computed: {
@@ -31,6 +54,9 @@ export default {
 		...mapMutations(["SAVE_DATA"]),
 		saveData: function() {
 			this.SAVE_DATA(this.usersList)
+		},
+		fullName(value) {
+			return `${value.name} ${value.lastname}`
 		},
 	},
 	mounted() {
@@ -50,5 +76,4 @@ export default {
 	},
 }
 </script>
-<style>
-</style>
+<style></style>

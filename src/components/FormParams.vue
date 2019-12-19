@@ -6,7 +6,7 @@
 					<b-form-input id="input-1" v-model="userData.name" type="text" placeholder="Name"></b-form-input>
 					<b-form-input id="input-2" v-model="userData.lastname" type="text" placeholder="Lastname"></b-form-input>
 					<b-form-input id="input-3" v-model="userData.email" type="email" placeholder="Email"></b-form-input>
-					<b-form-input id="input-4" v-model="userData.age" type="number" required placeholder="Age"></b-form-input>
+					<b-form-input id="input-4" v-model="userData.age" type="date" required placeholder="Birth"></b-form-input>
 					<b-form-radio-group v-model="userData.selected" :options="genders" name="form.gender" required></b-form-radio-group>
 					<b-form-input
 						id="input-5"

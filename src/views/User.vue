@@ -3,7 +3,7 @@
 		<!-- Page title -->
 		<h1>User</h1>
 		<!-- User data table -->
-		<b-table striped hover :items="userD"></b-table>
+		<b-table striped hover stacked :items="userD"></b-table>
 		<!-- Buttons -->
 		<b-button v-b-toggle.collapse-1 variant="info">Edit</b-button>
 		<b-button v-b-toggle.collapse-2>Delete</b-button>
