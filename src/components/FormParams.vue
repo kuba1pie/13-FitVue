@@ -57,24 +57,35 @@ export default {
 	methods: {
 		onReset() {},
 		onSubmit: function() {
-			axios
-				.post("https://jsonbox.io/box_5da249ea28d2b15aa1a8", this.userData)
-				.then(function(response) {
-					console.log(response)
-					//this.reload()
-				})
-				.catch(function(error) {
-					console.log(error)
-				})
+			if (this.userData._id == null) {
+				let link = "https://jsonbox.io/box_5da249ea28d2b15aa1a8/"
+				axios
+					.post(link, this.userData)
+					.then(function(response) {
+						console.log(response)
+					})
+					.catch(function(error) {
+						console.log(error)
+					})
+			} else {
+				let link =
+					"https://jsonbox.io/box_5da249ea28d2b15aa1a8/" + this.userData._id
+				axios
+					.put(link, this.userData)
+					.then(function(response) {
+						console.log(response)
+					})
+					.catch(function(error) {
+						console.log(error)
+					})
+			}
+
 			setTimeout(() => this.$emit("clicked", "someValue"), 350)
 		},
 		onExample() {},
 	},
 	mounted() {},
 	props: {
-		name: {
-			type: String,
-		},
 		userData: {
 			default: () => firstForm,
 		},
