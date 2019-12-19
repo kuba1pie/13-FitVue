@@ -1,11 +1,26 @@
 <template>
-  <div class="diet">
-    <h1>This is diet summary page</h1>
-  </div>
+	<div>
+		<b-tabs content-class="mt-3">
+			<b-tab title="Dishes" active>
+				<dishes />
+			</b-tab>
+			<b-tab title="Meals">
+				<Meals />
+			</b-tab>
+		</b-tabs>
+	</div>
 </template>
 
 <script>
-export default {}
+import Dishes from "@/components/Dishes.vue"
+import Meals from "@/components/Meals.vue"
+
+export default {
+	components: {
+		Dishes,
+		Meals,
+	},
+}
 </script>
 
 <style></style>
