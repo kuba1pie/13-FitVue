@@ -66,7 +66,7 @@ export default {
 				.catch(function(error) {
 					console.log(error)
 				})
-			setTimeout(() => this.$emit("clicked", "someValue"), 200)
+			setTimeout(() => this.$emit("clicked", "someValue"), 350)
 		},
 		onExample() {},
 	},

@@ -6,7 +6,7 @@
 		<b-button v-b-toggle.collapse-1 variant="info" @click="onEdit">Edit</b-button>
 		<b-button v-b-toggle.collapse-2 class="m-1">Delete</b-button>
 		<b-collapse id="collapse-1" class="border border-secondary p-5">
-			<FormParams v-bind:userData="userData" />
+			<FormParams v-bind:userData="reversedMessage[0]" />
 			<b-button variant="danger" @click="onSave">Save</b-button>
 		</b-collapse>
 		<b-collapse id="collapse-2" class="border border-secondary p-5">
@@ -44,7 +44,7 @@ export default {
 			axios.delete(
 				"https://jsonbox.io/box_5da249ea28d2b15aa1a8/" + this.$route.params.id
 			)
-			setTimeout(() => this.$router.push({ path: "../users" }), 200)
+			setTimeout(() => this.$router.push({ path: "../users" }), 350)
 		},
 		onEdit() {},
 		onSave() {
