@@ -26,11 +26,11 @@ export default {
 					},
 				},
 				{
-					key: "birthYear",
-					label: "Birth: ",
+					key: "birthDate",
+					label: "Age: ",
 					sortable: true,
 					formatter: (value, key, item) => {
-						return new Date().getFullYear() - new Date().getFullYear(item.age)
+						return new Date().getFullYear() - new Date(item.age).getFullYear()
 					},
 				},
 				{
