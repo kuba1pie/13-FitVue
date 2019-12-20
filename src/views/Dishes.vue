@@ -1,8 +1,10 @@
 <template>
 	<div>
-		<b-table striped hover :items="dishesList">
-			<template v-slot:cell(_id)="data">
-				<router-link :to="`/dish/${data.item._id}`">{{ data.value }}</router-link>
+		<b-table striped hover :items="dishesList" :fields="fields">
+			<template v-slot:cell(name)="data">
+				<router-link :to="`/dish/${data.item._id}`">
+					{{ data.value }}
+				</router-link>
 			</template>
 		</b-table>
 		<b-button v-b-toggle.collapse-1 class="m-1">Add new dish</b-button>
@@ -25,6 +27,13 @@ export default {
 	data: function() {
 		return {
 			dishesList: [],
+			fields: [
+				'name',
+				'kcal',
+				'proteins',
+				'carbs',
+				'fats'
+			]
 		}
 	},
 	components: {

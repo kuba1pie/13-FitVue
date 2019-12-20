@@ -6,7 +6,9 @@
 
 		<b-table striped hover :items="usersList" :fields="fields">
 			<template v-slot:cell(fullname)="data">
-				<router-link :to="`/user/${data.item._id}`">{{ data.value }}</router-link>
+				<router-link :to="`/user/${data.item._id}`">
+					{{ data.value }}
+				</router-link>
 			</template>
 		</b-table>
 		<!-- Table buttons -->
