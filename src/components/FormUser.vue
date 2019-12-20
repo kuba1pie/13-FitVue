@@ -36,7 +36,7 @@ import axios from "axios"
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex"
 import firstForm from "./firstForm"
 export default {
-	name: "FormParams",
+	name: "FormUser",
 	data() {
 		return {
 			activity: [
@@ -83,7 +83,6 @@ export default {
 		},
 		onExample() {},
 	},
-	mounted() {},
 	props: {
 		userData: {
 			default: () => firstForm,

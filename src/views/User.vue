@@ -12,7 +12,7 @@
 				<!-- Form collapse -->
 				<b-collapse id="collapse-1" class="border border-secondary p-5">
 					<!-- Form -->
-					<FormParams v-bind:userData="userD[0]" />
+					<FormUser v-bind:userData="userD[0]" />
 					<!-- Buttons -->
 					<b-button variant="danger" v-b-toggle.collapse-1>Close</b-button>
 				</b-collapse>
@@ -32,7 +32,7 @@
 <script>
 import axios from "axios"
 import router from "vue-router"
-import FormParams from "@/components/FormParams.vue"
+import FormUser from "@/components/FormUser.vue"
 import { mapState } from "vuex"
 
 export default {
@@ -44,7 +44,7 @@ export default {
 		}
 	},
 	components: {
-		FormParams,
+		FormUser,
 	},
 	computed: {
 		...mapState(["usersData"]),

@@ -6,11 +6,11 @@
 			</template>
 		</b-table>
 		<b-button v-b-toggle.collapse-1 class="m-1">Add new dish</b-button>
-		<!-- Add user collapse -->
+		<!-- Add dish collapse -->
 		<b-collapse id="collapse-1" class="border border-secondary p-5">
-			<!-- Add user form -->
-			<FormdDish />
-			<!-- Add user buttons -->
+			<!-- Add dish form -->
+			<FormDish @clicked="onClickChild" />
+			<!-- Add dish buttons -->
 			<b-button v-b-toggle.collapse-1 variant="success">Close</b-button>
 		</b-collapse>
 	</div>
@@ -22,41 +22,47 @@ import FormDish from "@/components/FormDish.vue"
 import { mapState, mapMutations } from "vuex"
 export default {
 	name: "Dishes",
-	components: "FormDish",
-	data() {
+	data: function() {
 		return {
 			dishesList: [],
 		}
 	},
-	computed: {
-		...mapState(["usersData"]),
-		//...mapGetters(["usersData"]),
+	components: {
+		FormDish,
 	},
-	mutations: {
-		addUsers(state, dish) {
-			state.dishesData.push(dish)
-		},
+	computed: {
+		...mapState(["dishesData"]),
 	},
 	methods: {
 		...mapMutations(["SAVE_DISH"]),
 		saveData: function() {
 			this.SAVE_DISH(this.dishesList)
 		},
+		onClickChild() {
+			this.loadData()
+		},
+		loadData() {
+			axios({
+				method: "get",
+				url: "https://jsonbox.io/box_c6b9b4b43ad746f983b6/",
+			})
+				.then(response => {
+					this.dishesList = [...response.data]
+					this.saveData()
+				})
+				.catch(err => {
+					// Manage the state of the application if the request
+					// has failed
+				})
+		},
 	},
 	mounted() {
-		axios({
-			method: "get",
-			url: "https://jsonbox.io/box_c6b9b4b43ad746f983b6/",
-			timeout: "0",
-		})
-			.then(response => {
-				this.dishesList = [...response.data]
-				this.saveData()
-			})
-			.catch(err => {
-				// Manage the state of the application if the request
-				// has failed
-			})
+		this.loadData()
+	},
+	mutations: {
+		addUsers(state, dish) {
+			state.dishesData.push(dish)
+		},
 	},
 }
 </script>

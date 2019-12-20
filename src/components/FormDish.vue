@@ -1,12 +1,12 @@
 <template>
 	<div id="dishForm" class="row">
 		<div class="col-6">
-			<b-form @reset="onReset">
+			<b-form>
 				<b-form-group id="input-name" label label-for="input-name" description>
 					<b-form-input id="input-1" v-model="dishData.name" type="text" placeholder="Name"></b-form-input>
-					<b-form-input id="input-2" v-model="dishData.lastname" type="text" placeholder="Lastname"></b-form-input>
-					<b-form-input id="input-3" v-model="dishData.email" type="email" placeholder="Email"></b-form-input>
-					<b-form-input id="input-4" v-model="dishData.age" type="date" required placeholder="Birth"></b-form-input>
+					<b-form-input id="input-2" v-model="dishData.proteins" type="number" placeholder="Proteins"></b-form-input>
+					<b-form-input id="input-3" v-model="dishData.carbs" type="number" placeholder="Carbs"></b-form-input>
+					<b-form-input id="input-4" v-model="dishData.fats" type="number" required placeholder="Fats"></b-form-input>
 				</b-form-group>
 			</b-form>
 		</div>
@@ -17,7 +17,7 @@
 <script lang="ts">
 import axios from "axios"
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex"
-import firstForm from "./firstForm"
+import firstDish from "./firstDish"
 export default {
 	name: "FormDish",
 	data() {
@@ -26,7 +26,6 @@ export default {
 		}
 	},
 	methods: {
-		onReset() {},
 		onSubmit: function() {
 			if (this.dishData._id == null) {
 				let link = "https://jsonbox.io/box_c6b9b4b43ad746f983b6/"
@@ -50,17 +49,13 @@ export default {
 						console.log(error)
 					})
 			}
-
 			setTimeout(() => this.$emit("clicked", "someValue"), 350)
 		},
 		onExample() {},
 	},
-	mounted() {
-		console.log("ok")
-	},
 	props: {
 		dishData: {
-			default: () => firstForm,
+			default: () => firstDish,
 		},
 	},
 }

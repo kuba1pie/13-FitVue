@@ -7,7 +7,7 @@
 		<b-button v-b-toggle.collapse-1 variant="info">Edit</b-button>
 		<b-button v-b-toggle.collapse-2>Delete</b-button>
 		<b-collapse id="collapse-1" class="border border-secondary p-5">
-			<FormDish />
+			<FormDish v-bind:userData="dishD[0]" />
 		</b-collapse>
 		<b-collapse id="collapse-2" class="border border-secondary p-5">
 			Do you want to delete this user?
