@@ -14,4 +14,7 @@ export default {
 	SAVE_DATA: (state, data) => {
 		state.usersData = data
 	},
+	SAVE_DISH: (state, data) => {
+		state.dishesData = data
+	},
 }

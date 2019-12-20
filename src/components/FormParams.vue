@@ -1,7 +1,7 @@
 <template>
 	<div id="userForm" class="row">
 		<div class="col-6">
-			<b-form @reset="onReset" @example="onExample" v-if="show">
+			<b-form @reset="onReset">
 				<b-form-group id="input-name" label label-for="input-name" description>
 					<b-form-input id="input-1" v-model="userData.name" type="text" placeholder="Name"></b-form-input>
 					<b-form-input id="input-2" v-model="userData.lastname" type="text" placeholder="Lastname"></b-form-input>
@@ -39,7 +39,6 @@ export default {
 	name: "FormParams",
 	data() {
 		return {
-			show: true,
 			activity: [
 				{ value: null, text: "Select your activity" },
 				{ value: 1, text: "None" },

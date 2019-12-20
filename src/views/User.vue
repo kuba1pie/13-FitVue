@@ -2,25 +2,30 @@
 	<div>
 		<!-- Page title -->
 		<h1>User</h1>
-		<!-- User data table -->
-		<b-table striped hover stacked :items="userD"></b-table>
-		<!-- Buttons -->
-		<b-button v-b-toggle.collapse-1 variant="info">Edit</b-button>
-		<b-button v-b-toggle.collapse-2>Delete</b-button>
-		<!-- Form collapse -->
-		<b-collapse id="collapse-1" class="border border-secondary p-5">
-			<!-- Form -->
-			<FormParams v-bind:userData="userD[0]" />
-			<!-- Buttons -->
-			<b-button variant="danger" v-b-toggle.collapse-1>Close</b-button>
-		</b-collapse>
-		<!-- Delete collapse -->
-		<b-collapse id="collapse-2" class="border border-secondary p-5">
-			Do you want to delete this user?
-			<!-- Buttons -->
-			<b-button variant="danger" @click="onDelete">Yes</b-button>
-			<b-button v-b-toggle.collapse-2 variant="success">No</b-button>
-		</b-collapse>
+		<b-tabs content-class="mt-3">
+			<b-tab title="Profile" active>
+				<!-- User data table -->
+				<b-table striped hover stacked :items="userD"></b-table>
+				<!-- Buttons -->
+				<b-button v-b-toggle.collapse-1 variant="info">Edit</b-button>
+				<b-button v-b-toggle.collapse-2>Delete</b-button>
+				<!-- Form collapse -->
+				<b-collapse id="collapse-1" class="border border-secondary p-5">
+					<!-- Form -->
+					<FormParams v-bind:userData="userD[0]" />
+					<!-- Buttons -->
+					<b-button variant="danger" v-b-toggle.collapse-1>Close</b-button>
+				</b-collapse>
+				<!-- Delete collapse -->
+				<b-collapse id="collapse-2" class="border border-secondary p-5">
+					Do you want to delete this user?
+					<!-- Buttons -->
+					<b-button variant="danger" @click="onDelete">Yes</b-button>
+					<b-button v-b-toggle.collapse-2 variant="success">No</b-button>
+				</b-collapse>
+			</b-tab>
+			<b-tab title="Diet"></b-tab>
+		</b-tabs>
 	</div>
 </template>
 
@@ -60,5 +65,4 @@ export default {
 	},
 }
 </script>
-<style>
-</style>
+<style></style>

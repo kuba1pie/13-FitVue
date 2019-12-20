@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Diet from "../views/Diet.vue";
+import Dish from "../views/Dish.vue";
+import Dishes from "../views/Dishes.vue";
 import User from "../views/User.vue";
 import Users from "../views/Users.vue";
 
@@ -24,9 +25,14 @@ const routes = [
     component: Users
   },
   {
-    path: "/diet",
-    name: "diet",
-    component: Diet
+    path: "/dish/:id",
+    name: "dish",
+    component: Dish
+  },
+  {
+    path: "/dishes",
+    name: "dishes",
+    component: Dishes
   }
 ];
 
