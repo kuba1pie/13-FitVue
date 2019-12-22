@@ -27,7 +27,7 @@ import axios from "axios"
 import { mapState, mapMutations } from "vuex"
 import FormUser from "@/components/FormUser.vue"
 export default {
-	name: "home",
+	name: "Users",
 	data: function() {
 		return {
 			usersList: [],

@@ -24,7 +24,9 @@
 					<b-button v-b-toggle.collapse-2 variant="success">No</b-button>
 				</b-collapse>
 			</b-tab>
-			<b-tab title="Diet"></b-tab>
+			<b-tab title="Diet">
+				<Diet />
+			</b-tab>
 		</b-tabs>
 	</div>
 </template>
@@ -33,6 +35,7 @@
 import axios from "axios"
 import router from "vue-router"
 import FormUser from "@/components/FormUser.vue"
+import Diet from "@/components/Diet.vue"
 import { mapState } from "vuex"
 
 export default {
@@ -44,6 +47,7 @@ export default {
 		}
 	},
 	components: {
+		Diet,
 		FormUser,
 	},
 	computed: {
