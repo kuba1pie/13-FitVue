@@ -3,7 +3,6 @@
 		<!-- Page title -->
 		<h1>Users table</h1>
 		<!-- Users table -->
-
 		<b-table striped hover :items="usersList" :fields="fields">
 			<template v-slot:cell(fullname)="data">
 				<router-link :to="`/user/${data.item._id}`">
@@ -81,6 +80,7 @@ export default {
 				.then(response => {
 					this.usersList = [...response.data]
 					this.saveData()
+					localStorage.setItem("storedData", this.usersList)
 				})
 				.catch(err => {
 					// Manage the state of the application if the request

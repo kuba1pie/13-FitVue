@@ -73,8 +73,10 @@
 
 <script lang="ts">
 import axios from "axios"
+import VuexPersistence from "vuex-persist"
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex"
 import firstForm from "./firstForm"
+
 export default {
 	name: "FormUser",
 	data() {
