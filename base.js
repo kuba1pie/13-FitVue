@@ -1,12 +1,16 @@
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "zaq12wsx"
+  host: "sql45.lh.pl",
+  user: "serwer53641",
+  password: "zaq12wsx",
+  database: "serwer53641_fitvue"
 });
 
 con.connect(function (err) {
   if (err) throw err;
-  console.log("Connected!");
+  con.query("SELECT * FROM `dish` ", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+  });
 });
