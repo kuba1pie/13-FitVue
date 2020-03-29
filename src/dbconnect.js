@@ -11,4 +11,8 @@ let con = mysql.createConnection({
 con.connect(function (err) {
 	if (err) throw err
 	console.log("Connected to the " + db_info.db_database + " database!")
+	con.query("SELECT name, kcal FROM dishes;", function (err, result, fields) {
+		if (err) throw err;
+		console.log(result);
+	});
 })
