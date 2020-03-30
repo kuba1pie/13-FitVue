@@ -5,9 +5,7 @@
 		<!-- Users table -->
 		<b-table striped hover :items="usersList" :fields="fields">
 			<template v-slot:cell(fullname)="data">
-				<router-link :to="`/user/${data.item._id}`">
-					{{ data.value }}
-				</router-link>
+				<router-link :to="`/user/${data.item._id}`">{{ data.value }}</router-link>
 			</template>
 		</b-table>
 		<!-- Table buttons -->
@@ -25,6 +23,15 @@
 import axios from "axios"
 import { mapState, mapMutations } from "vuex"
 import FormUser from "@/components/FormUser.vue"
+const db_info = require(".../private/dbinfo")
+let mysql = require("mysql")
+
+let con = mysql.createConnection({
+	host: db_info.db_host,
+	user: db_info.db_user,
+	password: db_info.db_password,
+	database: db_info.db_database,
+})
 export default {
 	name: "Users",
 	data: function() {
@@ -73,6 +80,10 @@ export default {
 			return `${value.name} ${value.lastname}`
 		},
 		loadData() {
+			con.connect(function(err) {
+				if (err) throw err
+				console.log("Connected to the " + db_info.db_database + " database!")
+			})
 			axios({
 				method: "get",
 				url: "https://jsonbox.io/box_5da249ea28d2b15aa1a8/",
@@ -98,3 +109,4 @@ export default {
 	},
 }
 </script>
+conn
