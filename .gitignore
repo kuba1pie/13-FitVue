@@ -2,6 +2,7 @@
 # node_modules
 /dist
 /private
+/src/private
 # local env files
 .env.local
 .env.*.local

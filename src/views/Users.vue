@@ -21,17 +21,11 @@
 </template>
 <script>
 import axios from "axios"
+import mysql from "mysql"
 import { mapState, mapMutations } from "vuex"
 import FormUser from "@/components/FormUser.vue"
-const db_info = require(".../private/dbinfo")
-let mysql = require("mysql")
-
-let con = mysql.createConnection({
-	host: db_info.db_host,
-	user: db_info.db_user,
-	password: db_info.db_password,
-	database: db_info.db_database,
-})
+//let mysql = require("mysql")
+import { db_host, db_user, db_password, db_database } from "../private/dbinfo"
 export default {
 	name: "Users",
 	data: function() {
@@ -73,6 +67,20 @@ export default {
 		onClickChild() {
 			this.loadData()
 		},
+		base: function() {
+			//console.log(db_host)
+			var mysql = require("mysql")
+			let con = mysql.createPool({
+				host: db_host,
+				user: db_user,
+				password: db_password,
+				database: db_database,
+			})
+			con.getConnection(function(err) {
+				if (err) throw err
+				console.log("Connected to the " + db_database + " database!")
+			})
+		},
 		saveData: function() {
 			this.SAVE_DATA(this.usersList)
 		},
@@ -80,10 +88,6 @@ export default {
 			return `${value.name} ${value.lastname}`
 		},
 		loadData() {
-			con.connect(function(err) {
-				if (err) throw err
-				console.log("Connected to the " + db_info.db_database + " database!")
-			})
 			axios({
 				method: "get",
 				url: "https://jsonbox.io/box_5da249ea28d2b15aa1a8/",
@@ -100,6 +104,7 @@ export default {
 		},
 	},
 	mounted() {
+		this.base()
 		this.loadData()
 	},
 	mutations: {
@@ -109,4 +114,3 @@ export default {
 	},
 }
 </script>
-conn

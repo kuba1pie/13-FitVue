@@ -8,11 +8,12 @@ let con = mysql.createConnection({
 	database: db_info.db_database,
 })
 
-con.connect(function (err) {
+con.connect(function(err) {
 	if (err) throw err
 	console.log("Connected to the " + db_info.db_database + " database!")
-	con.query("SELECT name, kcal FROM dishes;", function (err, result, fields) {
-		if (err) throw err;
-		console.log(result);
-	});
+	con.query("SELECT name, kcal FROM dishes;", function(err, result, fields) {
+		if (err) throw err
+		console.log(result)
+	})
 })
+``
