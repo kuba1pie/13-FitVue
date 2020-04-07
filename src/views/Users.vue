@@ -67,20 +67,6 @@ export default {
 		onClickChild() {
 			this.loadData()
 		},
-		base: function() {
-			//console.log(db_host)
-			var mysql = require("mysql")
-			let con = mysql.createPool({
-				host: db_host,
-				user: db_user,
-				password: db_password,
-				database: db_database,
-			})
-			con.getConnection(function(err) {
-				if (err) throw err
-				console.log("Connected to the " + db_database + " database!")
-			})
-		},
 		saveData: function() {
 			this.SAVE_DATA(this.usersList)
 		},
@@ -90,7 +76,7 @@ export default {
 		loadData() {
 			axios({
 				method: "get",
-				url: "https://jsonbox.io/box_5da249ea28d2b15aa1a8/",
+				url: "https://apifitvue.ew.r.appspot.com/users",
 			})
 				.then(response => {
 					this.usersList = [...response.data]
@@ -104,7 +90,6 @@ export default {
 		},
 	},
 	mounted() {
-		this.base()
 		this.loadData()
 	},
 	mutations: {
