@@ -41,12 +41,9 @@ export default {
 					},
 				},
 				{
-					key: "birthDate",
+					key: "age",
 					label: "Age: ",
 					sortable: true,
-					formatter: (value, key, item) => {
-						return new Date().getFullYear() - new Date(item.age).getFullYear()
-					},
 				},
 				{
 					key: "gender",
