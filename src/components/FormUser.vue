@@ -23,7 +23,7 @@
           ></b-form-input>
           <b-form-input
             id="input-4"
-            v-model="userData.age"
+            v-model="userData.birth"
             type="date"
             required
             placeholder="Birth"

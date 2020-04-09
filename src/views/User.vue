@@ -5,14 +5,14 @@
     <b-tabs content-class="mt-3">
       <b-tab title="Profile" active>
         <!-- User data table -->
-        <b-table hover :items="items.data"></b-table>
+        <b-table striped hover stacked :items="userData"></b-table>
         <!-- Buttons -->
         <b-button v-b-toggle.collapse-1 variant="info">Edit</b-button>
         <b-button v-b-toggle.collapse-2>Delete</b-button>
         <!-- Form collapse -->
         <b-collapse id="collapse-1" class="border border-secondary p-5">
           <!-- Form -->
-          <!-- <FormUser v-bind:userData="userD[0]" /> -->
+          <FormUser v-bind:userData="userData" /> -->
           <!-- Buttons -->
           <b-button variant="danger" v-b-toggle.collapse-1>Close</b-button>
         </b-collapse>
@@ -36,41 +36,28 @@ import axios from "axios"
 import router from "vue-router"
 import FormUser from "@/components/FormUser.vue"
 import Diet from "@/components/Diet.vue"
-import { mapState } from "vuex"
 
 export default {
   name: "User",
   data() {
     return {
-      //userData: [],
+      userData: [],
       userID: this.$route.params.id,
-      items: [],
-      dane: [],
-      fields: ["name", "lastname", "age"],
     }
   },
   components: {
     Diet,
-    //    FormUser,
-  },
-  computed: {
-    ...mapState(["usersData"]),
-    // Return datas from user from url path
-    /* 		userD: function() {
-			return this.usersData.filter(x => x._id === this.userID)
-		}, */
+    FormUser,
   },
   methods: {
     // Get UserData from API by Id
     loadData() {
-      axios({
-        method: "get",
-        url:
-          "https://apifitvue.ew.r.appspot.com/users/" + this.$route.params.id,
-      })
+      axios
+        .get(
+          "https://apifitvue.ew.r.appspot.com/users/" + this.$route.params.id
+        )
         .then(response => {
-          this.items = response
-          //this.dane = Object.entries(this.items)
+          this.userData = response.data
         })
         .catch(err => {
           // Manage the state of the application if the request
