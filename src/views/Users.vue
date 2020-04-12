@@ -26,8 +26,7 @@ import axios from "axios"
 import mysql from "mysql"
 import { mapState, mapMutations } from "vuex"
 import FormUser from "@/components/FormUser.vue"
-//let mysql = require("mysql")
-import { db_host, db_user, db_password, db_database } from "../private/dbinfo"
+
 export default {
   name: "Users",
   data: function() {
