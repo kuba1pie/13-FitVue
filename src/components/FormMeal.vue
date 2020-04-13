@@ -1,26 +1,57 @@
 <template>
-  <div id="dishForm" class="row">
-    <div class="col-6">
+  <div id="dishForm" class="row col-6">
+    {{ mealTarget.title }}
+    <form ref="form" @submit.stop.prevent="handleSubmit">
+      <vue-bootstrap-typeahead :data="['Canada', 'USA', 'Mexico']" />
       <b-form>
-        <b-form-group id="input-name" label label-for="input-name" description>
-          <b-form-input
-            id="input-0"
-            v-model="mealData.name"
-            type="text"
-            placeholder="Name"
-          ></b-form-input>
-          <b-form-input
-            id="input-1"
-            v-model="mealData.portion"
-            type="number"
-            placeholder="Kcal"
-          ></b-form-input>
-        </b-form-group>
+        <b-form-input
+          id="input-1"
+          type="number"
+          min="0"
+          placeholder="Portion"
+        ></b-form-input>
       </b-form>
-    </div>
-    <b-button type="submit" @click="onSubmit" variant="primary"
-      >Submit</b-button
-    >
+
+      <b-button v-b-toggle.collapse-1 variant="primary"
+        >Toggle Collapse</b-button
+      >
+      <b-collapse id="collapse-1" class="mt-2">
+        <b-form>
+          <b-form-group
+            label="Name"
+            label-for="name-input"
+            invalid-feedback="Name is required"
+          >
+            <b-form-input id="name-input" required></b-form-input>
+
+            <b-form-input
+              id="input-1"
+              type="number"
+              min="0"
+              placeholder="kcal"
+            ></b-form-input>
+            <b-form-input
+              id="input-1"
+              type="number"
+              min="0"
+              placeholder="protein"
+            ></b-form-input>
+            <b-form-input
+              id="input-1"
+              type="number"
+              min="0"
+              placeholder="carbo"
+            ></b-form-input>
+            <b-form-input
+              id="input-1"
+              type="number"
+              min="0"
+              placeholder="fat"
+            ></b-form-input>
+          </b-form-group>
+        </b-form>
+      </b-collapse>
+    </form>
   </div>
 </template>
 
@@ -61,10 +92,34 @@ export default {
       setTimeout(() => this.$emit("clicked", "someValue"), 350)
     },
     onExample() {},
+    checkFormValidity() {
+      const valid = this.$refs.form.checkValidity()
+      this.nameState = valid
+      return valid
+    },
+    handleOk(bvModalEvt) {
+      // Prevent modal from closing
+      bvModalEvt.preventDefault()
+      // Trigger submit handler
+      this.handleSubmit()
+    },
+    handleSubmit() {
+      // Exit when the form isn't valid
+      if (!this.checkFormValidity()) {
+        return
+      }
+      // Push the name to submitted names
+      console.log(this.name)
+      //        this.submittedNames.push(this.name)
+      // Hide the modal manually
+      this.$nextTick(() => {
+        this.$bvModal.hide("modal-prevent-closing")
+      })
+    },
   },
   props: {
-    dishData: {
-      default: () => firstDish,
+    mealTarget: {
+      type: Object,
     },
   },
 }
