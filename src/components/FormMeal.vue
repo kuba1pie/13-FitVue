@@ -1,49 +1,53 @@
 <template>
   <div id="dishForm" class="row col-6">
-    {{ mealTarget.title }}
-    <form ref="form" @submit.stop.prevent="handleSubmit">
-      <vue-bootstrap-typeahead :data="['Canada', 'USA', 'Mexico']" />
+    <form id="xyz" ref="form" @submit.stop.prevent="handleSubmit">
+      <vue-bootstrap-typeahead
+        id="search"
+        :data="['Canada', 'USA', 'Mexico']"
+      />
       <b-form>
         <b-form-input
-          id="input-1"
+          id="formPortion"
           type="number"
           min="0"
           placeholder="Portion"
         ></b-form-input>
+        <b-form-select
+          v-model="mealTarget.meal"
+          :options="optionsMeals"
+        ></b-form-select>
+        <b-form-input v-model="search"></b-form-input>
       </b-form>
 
-      <b-button v-b-toggle.collapse-1 variant="primary"
-        >Toggle Collapse</b-button
-      >
+      <b-button v-b-toggle.collapse-1 variant="primary">Custom Dish</b-button>
       <b-collapse id="collapse-1" class="mt-2">
         <b-form>
           <b-form-group
-            label="Name"
-            label-for="name-input"
+            label-for="formName"
             invalid-feedback="Name is required"
           >
-            <b-form-input id="name-input" required></b-form-input>
+            <b-form-input id="formName" required></b-form-input>
 
             <b-form-input
-              id="input-1"
+              id="formKcal"
               type="number"
               min="0"
               placeholder="kcal"
             ></b-form-input>
             <b-form-input
-              id="input-1"
+              id="formProtein"
               type="number"
               min="0"
               placeholder="protein"
             ></b-form-input>
             <b-form-input
-              id="input-1"
+              id="formCarbo"
               type="number"
               min="0"
               placeholder="carbo"
             ></b-form-input>
             <b-form-input
-              id="input-1"
+              id="formFat"
               type="number"
               min="0"
               placeholder="fat"
@@ -63,6 +67,13 @@ export default {
   data() {
     return {
       mealList: [],
+      //selected: mealTarget.meal,
+      optionsMeals: [
+        { value: 1, text: "Breakfest" },
+        { value: 2, text: "Lunch" },
+        { value: 3, text: "Dinner" },
+        { value: 4, text: "Supper" },
+      ],
     }
   },
   methods: {

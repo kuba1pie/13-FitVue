@@ -29,10 +29,10 @@ export default {
     return {
       dishesList: [],
       meals: [
-        { name: "Breakfest" },
-        { name: "Lunch" },
-        { name: "Dinner" },
-        { name: "Supper" },
+        { name: "Breakfest", id: 1 },
+        { name: "Lunch", id: 2 },
+        { name: "Dinner", id: 3 },
+        { name: "Supper", id: 4 },
       ],
       fields: [
         {
@@ -76,7 +76,7 @@ export default {
     info(item, index, button) {
       //this.formModal.title = `Add ${item.name}`
       console.log(item.name)
-      this.mealTarget.meal = item.name
+      this.mealTarget.meal = item.id
       //this.$root.$emit("bv::show::modal", this.formModal.id, button)
     },
   },
