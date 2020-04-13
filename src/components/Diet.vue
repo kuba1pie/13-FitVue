@@ -1,7 +1,26 @@
 <template>
   <div class="hello">
-    <b-table striped hover :items="meals"></b-table>
-
+    <b-table striped hover :items="meals" :fields="fields">
+      <template v-slot:cell(actions)="row">
+        <b-button
+          size="sm"
+          @click="info(row.item, row.index, $event.target)"
+          class="mr-1"
+        >
+          Add a dish
+        </b-button>
+      </template>
+    </b-table>
+    <!-- Form modal -->
+    <b-modal
+      :id="formModal.id"
+      :title="formModal.title"
+      ok-only
+      @hide="resetFormModal"
+    >
+      <pre>{{ formModal.content }}</pre>
+      <FormMeal />
+    </b-modal>
     <!--- SECOND TABLE-->
     <b-table-simple hover small caption-top responsive>
       <colgroup>
@@ -80,6 +99,7 @@
 <script lang="ts">
 import axios from "axios"
 import router from "vue-router"
+import FormMeal from "@/components/FormMeal.vue"
 export default {
   name: "Diet",
   data: function() {
@@ -92,8 +112,24 @@ export default {
         { name: "Dinner" },
         { name: "Supper" },
       ],
+      fields: [
+        {
+          key: "name",
+          label: "Meal",
+        },
+        { key: "actions", label: "Actions" },
+      ],
+      formModal: {
+        id: "form-modal",
+        title: "",
+        content: "",
+      },
+
       //userID: this.$route.params.id,
     }
+  },
+  components: {
+    FormMeal,
   },
   methods: {
     loadData() {
@@ -110,6 +146,14 @@ export default {
           // Manage the state of the application if the request
           // has failed
         })
+    },
+    info(item, index, button) {
+      this.formModal.title = `Add ${item.name}`
+      /*
+      this.infoModal.content = JSON.stringify(item, null, 2)
+      this.$root.$emit("bv::show::modal", this.infoModal.id, button) */
+      console.log(item.name)
+      this.$root.$emit("bv::show::modal", this.formModal.id, button)
     },
   },
   mounted() {
