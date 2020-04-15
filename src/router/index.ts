@@ -1,45 +1,45 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Dish from "../views/Dish.vue";
-import Dishes from "../views/Dishes.vue";
-import User from "../views/User.vue";
-import Users from "../views/Users.vue";
+import Vue from "vue"
+import VueRouter from "vue-router"
+import Home from "../views/Home.vue"
+import Dish from "../views/Dish.vue"
+import Dishes from "../views/Dishes.vue"
+import User from "../views/User.vue"
+import Users from "../views/Users.vue"
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
     path: "/",
     name: "home",
-    component: Home
+    component: Home,
   },
   {
     path: "/user/:id",
     name: "user",
-    component: User
+    component: User,
   },
   {
     path: "/users",
     name: "users",
-    component: Users
+    component: Users,
   },
   {
     path: "/dish/:id",
     name: "dish",
-    component: Dish
+    component: Dish,
   },
   {
     path: "/dishes",
     name: "dishes",
-    component: Dishes
-  }
-];
+    component: Dishes,
+  },
+]
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
-});
+  routes,
+})
 
-export default router;
+export default router

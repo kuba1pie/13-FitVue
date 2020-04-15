@@ -29,7 +29,7 @@
             placeholder="Birth"
           ></b-form-input>
           <b-form-radio-group
-            v-model="userData.selected"
+            v-model="userData.gender"
             :options="genders"
             name="form.gender"
             required
@@ -99,7 +99,8 @@ export default {
     onReset() {},
     onSubmit: function() {
       if (this.userData._id == null) {
-        let link = "https://apifitvue.ew.r.appspot.com/users"
+        console.log(this.userData)
+        let link = "https://apifitvue.ew.r.appspot.com/meals"
         axios
           .post(link, this.userData)
           .then(function(response) {

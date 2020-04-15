@@ -11,11 +11,11 @@ import userForms from "./modules/userForms"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-	modules: {
-		userForms,
-	},
-	state,
-	getters,
-	mutations,
-	actions,
+  modules: {
+    userForms,
+  },
+  state,
+  getters,
+  mutations,
+  actions,
 })

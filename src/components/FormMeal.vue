@@ -1,23 +1,23 @@
 <template>
   <div id="dishForm" class="row col-6">
+    {{ form }}
     <form id="xyz" ref="form" @submit.stop.prevent="handleSubmit">
-      <vue-bootstrap-typeahead
-        id="search"
-        :data="['Canada', 'USA', 'Mexico']"
-      />
+      <vue-bootstrap-typeahead v-model="form.name" :data="countries" />
       <b-form>
         <b-form-input
           id="formPortion"
           type="number"
           min="0"
+          v-model="form.portion"
           placeholder="Portion"
         ></b-form-input>
         <b-form-select
           v-model="mealTarget.meal"
           :options="optionsMeals"
         ></b-form-select>
-        <b-form-input v-model="search"></b-form-input>
+        <b-form-input></b-form-input>
       </b-form>
+      <b-button v-on:click="onSubmit()" variant="primary">Submit</b-button>
 
       <b-button v-b-toggle.collapse-1 variant="primary">Custom Dish</b-button>
       <b-collapse id="collapse-1" class="mt-2">
@@ -26,29 +26,37 @@
             label-for="formName"
             invalid-feedback="Name is required"
           >
-            <b-form-input id="formName" required></b-form-input>
+            <b-form-input
+              id="formName"
+              required
+              v-model="form.name"
+            ></b-form-input>
 
             <b-form-input
               id="formKcal"
               type="number"
+              v-model="form.kcal"
               min="0"
               placeholder="kcal"
             ></b-form-input>
             <b-form-input
               id="formProtein"
               type="number"
+              v-model="form.protein"
               min="0"
               placeholder="protein"
             ></b-form-input>
             <b-form-input
               id="formCarbo"
               type="number"
+              v-model="form.carbo"
               min="0"
               placeholder="carbo"
             ></b-form-input>
             <b-form-input
               id="formFat"
               type="number"
+              v-model="form.fat"
               min="0"
               placeholder="fat"
             ></b-form-input>
@@ -62,12 +70,13 @@
 <script lang="ts">
 import axios from "axios"
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex"
+import mealForm from "./mealForm"
 export default {
   name: "FormDish",
   data() {
     return {
       mealList: [],
-      //selected: mealTarget.meal,
+      countries: ["Canada", "USA", "Mexico"],
       optionsMeals: [
         { value: 1, text: "Breakfest" },
         { value: 2, text: "Lunch" },
@@ -78,37 +87,27 @@ export default {
   },
   methods: {
     onSubmit: function() {
-      if (this.dishData._id == null) {
-        let link = "https://jsonbox.io/box_c6b9b4b43ad746f983b6/"
-        axios
-          .post(link, this.dishData)
-          .then(function(response) {
-            console.log(response)
-          })
-          .catch(function(error) {
-            console.log(error)
-          })
-      } else {
-        let link =
-          "https://jsonbox.io/box_c6b9b4b43ad746f983b6/" + this.dishData._id
-        axios
-          .put(link, this.dishData)
-          .then(function(response) {
-            console.log(response)
-          })
-          .catch(function(error) {
-            console.log(error)
-          })
-      }
-      setTimeout(() => this.$emit("clicked", "someValue"), 350)
+      //let link = "https://apifitvue.ew.r.appspot.com/meals/"
+      let link = "http://localhost:3000/meals/"
+      console.log(link)
+      console.log(this.form)
+      axios
+        .post(link, this.form)
+        .then(function(response) {
+          console.log(response)
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      //setTimeout(() => this.$emit("clicked", "someValue"), 350)
     },
-    onExample() {},
     checkFormValidity() {
       const valid = this.$refs.form.checkValidity()
       this.nameState = valid
       return valid
     },
     handleOk(bvModalEvt) {
+      console.log(this.form)
       // Prevent modal from closing
       bvModalEvt.preventDefault()
       // Trigger submit handler
@@ -116,21 +115,25 @@ export default {
     },
     handleSubmit() {
       // Exit when the form isn't valid
-      if (!this.checkFormValidity()) {
+      /*       if (!this.checkFormValidity()) {
         return
-      }
+      } */
       // Push the name to submitted names
-      console.log(this.name)
-      //        this.submittedNames.push(this.name)
-      // Hide the modal manually
-      this.$nextTick(() => {
-        this.$bvModal.hide("modal-prevent-closing")
-      })
+      console.log(this.form)
+      this.onSubmit(),
+        //        this.submittedNames.push(this.name)
+        // Hide the modal manually
+        this.$nextTick(() => {
+          this.$bvModal.hide("modal-prevent-closing")
+        })
     },
   },
   props: {
     mealTarget: {
       type: Object,
+    },
+    form: {
+      default: () => mealForm,
     },
   },
 }

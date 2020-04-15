@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <date-pick v-model="mealTarget.date"></date-pick>
     <b-table striped hover :items="meals" :fields="fields">
       <template v-slot:cell(actions)="row">
         <b-button
@@ -22,7 +23,8 @@
 import axios from "axios"
 import router from "vue-router"
 import FormMeal from "@/components/FormMeal.vue"
-
+import DatePick from "vue-date-pick"
+import "vue-date-pick/dist/vueDatePick.css"
 export default {
   name: "Diet",
   data: function() {
@@ -49,13 +51,14 @@ export default {
       mealTarget: {
         meal: null,
         userId: this.$route.params.id,
-        date: "My Journey with Vue",
+        date: "2020-01-01",
       },
       //userID: this.$route.params.id,
     }
   },
   components: {
     FormMeal,
+    DatePick,
   },
   methods: {
     loadData() {

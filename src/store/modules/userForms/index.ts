@@ -2,7 +2,7 @@ import firstForm from "./firstForm"
 
 // initial state
 const state = {
-	forms: [firstForm],
+  forms: [firstForm],
 }
 
 // getters
@@ -13,16 +13,16 @@ const actions = {}
 
 // mutations
 const mutations = {
-	ADD_FORM: (state, form) => {
-		//state.formularze.push(form)
-		state.forms.push(form)
-	},
+  ADD_FORM: (state, form) => {
+    //state.formularze.push(form)
+    state.forms.push(form)
+  },
 }
 
 export default {
-	namespaced: true,
-	state,
-	getters,
-	actions,
-	mutations,
+  namespaced: true,
+  state,
+  getters,
+  actions,
+  mutations,
 }
