@@ -16,6 +16,7 @@
     <b-modal id="modal-1" :title="formModal.title">
       <FormMeal :mealTarget="mealTarget" />
     </b-modal>
+    <DietTable :userId="mealTarget.userId" :date="mealTarget.date" />
   </div>
 </template>
 
@@ -23,6 +24,7 @@
 import axios from "axios"
 import router from "vue-router"
 import FormMeal from "@/components/FormMeal.vue"
+import DietTable from "@/components/DietTable.vue"
 import DatePick from "vue-date-pick"
 import "vue-date-pick/dist/vueDatePick.css"
 export default {
@@ -51,7 +53,7 @@ export default {
       mealTarget: {
         meal: null,
         userId: this.$route.params.id,
-        date: "2020-01-01",
+        date: "2020-04-16",
       },
       //userID: this.$route.params.id,
     }
@@ -59,6 +61,7 @@ export default {
   components: {
     FormMeal,
     DatePick,
+    DietTable,
   },
   methods: {
     loadData() {

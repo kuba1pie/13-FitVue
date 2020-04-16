@@ -89,7 +89,7 @@ export default {
           // has failed
         })
     },
-/*     loadDishesList() {
+    /*     loadDishesList() {
       axios({
         method: "get",
         url: "https://apifitvue.ew.r.appspot.com/dishes",
