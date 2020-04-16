@@ -4,4 +4,5 @@ export default {
   //msg: "Blabla",
   //formularze: [firstForm],
   usersData: ["store"],
+  dishesList: ["store"],
 }

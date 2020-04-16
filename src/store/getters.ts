@@ -5,4 +5,7 @@ export default {
   usersData: state => {
     return state.usersData
   },
+  dishesList: state => {
+    return state.dishesList
+  },
 }

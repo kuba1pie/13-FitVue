@@ -1,6 +1,6 @@
 <template>
   <div id="dishForm" class="row">
-    <div class="col-6">
+    <div class="row">
       <b-form>
         <b-form-group id="input-name" label label-for="input-name" description>
           <b-form-input

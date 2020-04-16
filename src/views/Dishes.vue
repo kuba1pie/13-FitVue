@@ -2,7 +2,7 @@
   <div>
     <b-table striped hover :items="dishesList" :fields="fields">
       <template v-slot:cell(name)="data">
-        <router-link :to="`/dish/${data.item.id}`">{{
+        <router-link :to="`/dish/${data.item.dishId}`">{{
           data.value
         }}</router-link>
       </template>

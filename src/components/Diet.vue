@@ -64,7 +64,7 @@ export default {
     loadData() {
       axios({
         method: "get",
-        url: "https://jsonbox.io/box_c6b9b4b43ad746f983b6/",
+        url: "https://apifitvue.ew.r.appspot.com/dishes",
       })
         .then(response => {
           this.dishesList = [...response.data]

@@ -5,7 +5,7 @@
     <!-- Users table -->
     <b-table striped hover :items="usersList" :fields="fields">
       <template v-slot:cell(fullname)="data">
-        <router-link :to="`/user/${data.item.id}`">{{
+        <router-link :to="`/user/${data.item.userId}`">{{
           data.value
         }}</router-link>
       </template>
@@ -58,15 +58,18 @@ export default {
     FormUser,
   },
   computed: {
-    ...mapState(["usersData"]),
+    ...mapState(["usersData", "dishesList"]),
   },
   methods: {
-    ...mapMutations(["SAVE_DATA"]),
+    ...mapMutations(["SAVE_DATA", "SAVE_DISHLIST"]),
     onClickChild() {
       this.loadData()
     },
     saveData: function() {
       this.SAVE_DATA(this.usersList)
+    },
+    saveDishesList: function() {
+      this.SAVE_DISHLIST(this.dishesList)
     },
     fullName(value) {
       return `${value.name} ${value.lastname}`
@@ -78,17 +81,33 @@ export default {
       })
         .then(response => {
           this.usersList = [...response.data]
-          this.saveData()
-          localStorage.setItem("storedData", this.usersList)
+          //this.saveData()
+          //localStorage.setItem("storedData", this.usersList)
         })
         .catch(err => {
           // Manage the state of the application if the request
           // has failed
         })
     },
+/*     loadDishesList() {
+      axios({
+        method: "get",
+        url: "https://apifitvue.ew.r.appspot.com/dishes",
+      })
+        .then(response => {
+          this.dishesList = [...response.data]
+          this.saveDishesList()
+          //localStorage.setItem("storedData", this.usersList)
+        })
+        .catch(err => {
+          // Manage the state of the application if the request
+          // has failed
+        })
+    }, */
   },
   mounted() {
     this.loadData()
+    //this.loadDishesList()
   },
   mutations: {
     addUsers(state, users) {
