@@ -11,11 +11,11 @@ export default {
 	name: "DietTable",
 	data() {
 		return {
-			items: [
-				{ age: 40, first_name: "Dickerson", last_name: "Macdonald" },
-				{ age: 21, first_name: "Larsen", last_name: "Shaw" },
-				{ age: 89, first_name: "Geneva", last_name: "Wilson" },
-				{ age: 38, first_name: "Jami", last_name: "Carney" },
+			optionsMeals: [
+				{ value: 1, text: "Breakfest" },
+				{ value: 2, text: "Lunch" },
+				{ value: 3, text: "Dinner" },
+				{ value: 4, text: "Supper" },
 			],
 			meals: [],
 		}
@@ -24,11 +24,27 @@ export default {
 		loadData() {
 			axios
 				.get(
-					"https://apifitvue.ew.r.appspot.com/users/" + this.userId + "/meals/" + this.date
+					"https://apifitvue.ew.r.appspot.com/users/" +
+						this.userId +
+						"/meals/" +
+						this.date
+					//"http://localhost:3000/users/" + this.userId + "/meals/" + this.date
 				)
 				.then(response => {
 					this.meals = [...response.data]
 					//console.log(this.meals)
+					let i,
+						kcal = 0,
+						fat = 0
+					for (i = 0; i < this.meals.length; i++) {
+						kcal = parseInt(this.meals[i].kcal, 10) + kcal
+						fat = parseInt(this.meals[i].fat, 10) + fat
+						//kcal = parseInt(this.meals[i].kcal, 10) + kcal
+						//kcal = parseInt(this.meals[i].kcal, 10) + kcal
+						//console.log(parseInt(this.meals[i].kcal))
+					}
+					console.log("kcal: " + kcal)
+					console.log("fat: " + fat)
 					//this.saveData()
 					//localStorage.setItem("storedData", this.usersList)
 				})

@@ -81,7 +81,7 @@ export default {
     },
     info(item, index, button) {
       //this.formModal.title = `Add ${item.name}`
-      console.log(item.name)
+      //console.log(item.name)
       this.mealTarget.meal = item.id
       //this.$root.$emit("bv::show::modal", this.formModal.id, button)
     },

@@ -38,44 +38,44 @@ import FormUser from "@/components/FormUser.vue"
 import Diet from "@/components/Diet.vue"
 
 export default {
-	name: "User",
-	data() {
-		return {
-			userData: [],
-			userID: this.$route.params.id,
-		}
-	},
-	components: {
-		Diet,
-		FormUser,
-	},
-	methods: {
-		// Get UserData from API by Id
-		loadData() {
-			axios
-				.get(
-					"https://apifitvue.ew.r.appspot.com/users/" + this.$route.params.id
-				)
-				.then(response => {
-					this.userData = response.data
-				})
-				.catch(err => {
-					// Manage the state of the application if the request
-					// has failed
-				})
-		},
-		// Delete User
-		onDelete() {
-			axios.delete(
-				"https://apifitvue.ew.r.appspot.com/users/" + this.$route.params.id
-			)
-			// Reload to /users after timeout due to serve response
-			setTimeout(() => this.$router.push({ path: "../users" }), 350)
-		},
-	},
-	mounted() {
-		this.loadData()
-	},
+  name: "User",
+  data() {
+    return {
+      userData: [],
+      userID: this.$route.params.id,
+    }
+  },
+  components: {
+    Diet,
+    FormUser,
+  },
+  methods: {
+    // Get UserData from API by Id
+    loadData() {
+      axios
+        .get(
+          "https://apifitvue.ew.r.appspot.com/users/" + this.$route.params.id
+        )
+        .then(response => {
+          this.userData = response.data
+        })
+        .catch(err => {
+          // Manage the state of the application if the request
+          // has failed
+        })
+    },
+    // Delete User
+    onDelete() {
+      axios.delete(
+        "https://apifitvue.ew.r.appspot.com/users/" + this.$route.params.id
+      )
+      // Reload to /users after timeout due to serve response
+      setTimeout(() => this.$router.push({ path: "../users" }), 350)
+    },
+  },
+  mounted() {
+    this.loadData()
+  },
 }
 </script>
 <style></style>
