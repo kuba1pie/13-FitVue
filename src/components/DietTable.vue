@@ -8,63 +8,69 @@
 import axios from "axios"
 //import { mapState, mapMutations, mapGetters, mapActions } from "vuex"
 export default {
-	name: "DietTable",
-	data() {
-		return {
-			optionsMeals: [
-				{ value: 1, text: "Breakfest" },
-				{ value: 2, text: "Lunch" },
-				{ value: 3, text: "Dinner" },
-				{ value: 4, text: "Supper" },
-			],
-			meals: [],
-		}
-	},
-	methods: {
-		loadData() {
-			axios
-				.get(
-					"https://apifitvue.ew.r.appspot.com/users/" +
-						this.userId +
-						"/meals/" +
-						this.date
-					//"http://localhost:3000/users/" + this.userId + "/meals/" + this.date
-				)
-				.then(response => {
-					this.meals = [...response.data]
-					//console.log(this.meals)
-					let i,
-						kcal = 0,
-						fat = 0
-					for (i = 0; i < this.meals.length; i++) {
-						kcal = parseInt(this.meals[i].kcal, 10) + kcal
-						fat = parseInt(this.meals[i].fat, 10) + fat
-						//kcal = parseInt(this.meals[i].kcal, 10) + kcal
-						//kcal = parseInt(this.meals[i].kcal, 10) + kcal
-						//console.log(parseInt(this.meals[i].kcal))
-					}
-					console.log("kcal: " + kcal)
-					console.log("fat: " + fat)
-					//this.saveData()
-					//localStorage.setItem("storedData", this.usersList)
-				})
-				.catch(err => {
-					// Manage the state of the application if the request
-					// has failed
-				})
-		},
-	},
-	mounted() {
-		this.loadData()
-	},
-	props: {
-		userId: {
-			type: String,
-		},
-		date: {
-			type: String,
-		},
-	},
+  name: "DietTable",
+  data() {
+    return {
+      optionsMeals: [
+        { value: 1, text: "Breakfest" },
+        { value: 2, text: "Lunch" },
+        { value: 3, text: "Dinner" },
+        { value: 4, text: "Supper" },
+      ],
+      meals: [],
+    }
+  },
+  methods: {
+    loadData() {
+      axios
+        .get(
+          "https://apifitvue.ew.r.appspot.com/users/" +
+            this.userId +
+            "/meals/" +
+            this.date
+          //"http://localhost:3000/users/" + this.userId + "/meals/" + this.date
+        )
+        .then(response => {
+          this.meals = [...response.data]
+          //console.log(this.meals)
+          let i,
+            kcal = 0,
+            fat = 0,
+            prot = 0,
+            carb = 0
+          for (i = 0; i < this.meals.length; i++) {
+            kcal = parseInt(this.meals[i].kcal, 10) + kcal
+            fat = parseInt(this.meals[i].fat, 10) + fat
+            prot = parseInt(this.meals[i].protein, 10) + prot
+            carb = parseInt(this.meals[i].carbo, 10) + carb
+          }
+
+          let sumaobj = {
+            meal: "Suma",
+            kcal: kcal,
+            protein: prot,
+            carbo: carb,
+            fat: fat,
+          }
+          this.meals.push(sumaobj)
+        })
+        .catch(err => {
+          // Manage the state of the application if the request
+          // has failed
+        })
+    },
+  },
+  mounted() {
+    this.loadData()
+  },
+  props: {
+    userId: {
+      type: String,
+    },
+    date: {
+      type: String,
+    },
+  },
 }
 </script>
 
