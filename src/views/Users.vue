@@ -11,14 +11,13 @@
       </template>
     </b-table>
     <!-- Table buttons -->
-    <b-button v-b-toggle.collapse-1 class="m-1">Add new user</b-button>
+    <b-button v-b-modal.modal-1 class="m-1">Add new user</b-button>
     <!-- Add user collapse -->
-    <b-collapse id="collapse-1" class="border border-secondary p-5">
+    <b-modal id="modal-1" class="border border-secondary p-5">
       <!-- Add user form -->
       <FormUser @clicked="onClickChild" />
       <!-- Add user buttons -->
-      <b-button v-b-toggle.collapse-1 variant="success">Close</b-button>
-    </b-collapse>
+    </b-modal>
   </div>
 </template>
 <script>
