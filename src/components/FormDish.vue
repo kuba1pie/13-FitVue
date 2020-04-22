@@ -33,7 +33,7 @@ export default {
 	methods: {
 		onSubmit: function() {
 			if (this.dishData._id == null) {
-				let link = "https://jsonbox.io/box_c6b9b4b43ad746f983b6/"
+				let link = "https://apifitvue.ew.r.appspot.com/users/"
 				axios
 					.post(link, this.dishData)
 					.then(function(response) {
@@ -44,7 +44,7 @@ export default {
 					})
 			} else {
 				let link =
-					"https://jsonbox.io/box_c6b9b4b43ad746f983b6/" + this.dishData._id
+					"https://apifitvue.ew.r.appspot.com/users/" + this.dishData._id
 				axios
 					.put(link, this.dishData)
 					.then(function(response) {

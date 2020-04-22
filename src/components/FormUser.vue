@@ -2,38 +2,37 @@
   <div id="userForm">
     <b-form @reset="onReset">
       <b-form-group id="input-name" label label-for="input-name" description>
-        <b-form-input id="input-1" v-model="userData.name" type="text" placeholder="Name"></b-form-input>
-        <b-form-input id="input-2" v-model="userData.lastname" type="text" placeholder="Lastname"></b-form-input>
-        <b-form-input id="input-3" v-model="userData.email" type="email" placeholder="Email"></b-form-input>
+        <b-form-input id="input-1" v-model="userData[0].name" type="text" placeholder="Name"></b-form-input>
+        <b-form-input id="input-2" v-model="userData[0].lastname" type="text" placeholder="Lastname"></b-form-input>
+        <b-form-input id="input-3" v-model="userData[0].email" type="email" placeholder="Email"></b-form-input>
         <b-form-input
           id="input-4"
-          v-model="userData.birth"
+          v-model="userData[0].birth"
           type="date"
           required
           placeholder="Birth"
         ></b-form-input>
         <b-form-radio-group
-          v-model="userData.gender"
+          v-model="userData[0].gender"
           :options="genders"
           name="form.gender"
           required
         ></b-form-radio-group>
         <b-form-input
           id="input-5"
-          v-model="userData.weight"
+          v-model="userData[0].weight"
           type="number"
           required
           placeholder="Weight"
         ></b-form-input>
         <b-form-input
           id="input-6"
-          v-model="userData.height"
+          v-model="userData[0].height"
           type="number"
           required
           placeholder="Height"
         ></b-form-input>
-        <b-form-select id="input-7" v-model="userData.activity" :options="activity" required></b-form-select>
-        <b-form-input id="range-2" v-model="userData.value" type="range" min="0" max="5" step="0.5"></b-form-input>
+        <b-form-select id="input-7" v-model="userData[0].activity" :options="activity" required></b-form-select>
       </b-form-group>
     </b-form>
     <b-button type="submit" @click="onSubmit" variant="primary">Submit</b-button>
@@ -69,7 +68,7 @@ export default {
 		onSubmit: function() {
 			if (this.userData._id == null) {
 				console.log(this.userData)
-				let link = "https://apifitvue.ew.r.appspot.com/meals"
+				let link = "https://apifitvue.ew.r.appspot.com/users"
 				axios
 					.post(link, this.userData)
 					.then(function(response) {

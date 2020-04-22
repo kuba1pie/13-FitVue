@@ -15,7 +15,7 @@
         <!-- Form collapse -->
         <b-collapse id="collapse-1" class="border border-secondary p-5">
           <!-- Form -->
-          <FormUser v-bind:userData="userData" />-->
+          <FormUser v-bind:userDataForm="userData" />
           <!-- Buttons -->
           <b-button variant="danger" v-b-toggle.collapse-1>Close</b-button>
         </b-collapse>
@@ -42,6 +42,7 @@ export default {
   data() {
     return {
       userData: [],
+      userDataForm: userData,
       userID: this.$route.params.id,
     }
   },
