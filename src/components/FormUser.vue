@@ -3,7 +3,12 @@
     <b-form @reset="onReset">
       <b-form-group id="input-name" label label-for="input-name" description>
         <b-form-input id="input-1" v-model="userData[0].name" type="text" placeholder="Name"></b-form-input>
-        <b-form-input id="input-2" v-model="userData[0].lastname" type="text" placeholder="Lastname"></b-form-input>
+        <b-form-input
+          id="input-2"
+          v-model="userData[0].lastname"
+          type="text"
+          placeholder="Lastname"
+        ></b-form-input>
         <b-form-input id="input-3" v-model="userData[0].email" type="email" placeholder="Email"></b-form-input>
         <b-form-input
           id="input-4"
@@ -95,9 +100,7 @@ export default {
 		onExample() {},
 	},
 	props: {
-		userData: {
-			default: () => firstForm,
-		},
+		userData: Object,
 	},
 }
 </script>
