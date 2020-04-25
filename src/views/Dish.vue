@@ -4,13 +4,13 @@
     <h1>Dish</h1>
     <b-table striped hover stacked :items="dishData"></b-table>
     <!-- Buttons -->
-    <b-button v-b-toggle.collapse-1 variant="info">Edit</b-button>
+    <b-button v-b-modal.modal-1 variant="info">Edit</b-button>
     <b-button v-b-toggle.collapse-2>Delete</b-button>
-    <b-collapse id="collapse-1" class="border border-secondary p-5">
-      <!--       <FormDish v-bind:dishData="dishD[0]" /> -->
-    </b-collapse>
+    <b-modal id="modal-1" class="border border-secondary p-5">
+      <FormDish v-bind:dishData="dishData[0]" />
+    </b-modal>
     <b-collapse id="collapse-2" class="border border-secondary p-5">
-      Do you want to delete this user?
+      Do you want to delete this dish?
       <!-- Buttons -->
       <b-button variant="danger" @click="onDelete">Yes</b-button>
       <b-button v-b-toggle.collapse-2 variant="success">No</b-button>
@@ -21,7 +21,7 @@
 <script>
 import axios from "axios"
 import router from "vue-router"
-//import FormDish from "@/components/FormDish.vue"
+import FormDish from "@/components/FormDish.vue"
 import { mapState } from "vuex"
 
 export default {
@@ -33,7 +33,7 @@ export default {
     }
   },
   components: {
-    //ormDish,
+    FormDish,
   },
   computed: {
     ...mapState(["dishesData"]),

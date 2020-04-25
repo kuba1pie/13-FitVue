@@ -4,15 +4,9 @@
       <b-form-group id="input-name" label label-for="input-name" description>
         <b-form-input id="input-0" v-model="dishData.name" type="text" placeholder="Name"></b-form-input>
         <b-form-input id="input-1" v-model="dishData.kcal" type="number" placeholder="Kcal"></b-form-input>
-        <b-form-input id="input-2" v-model="dishData.proteins" type="number" placeholder="Proteins"></b-form-input>
-        <b-form-input id="input-3" v-model="dishData.carbs" type="number" placeholder="Carbs"></b-form-input>
-        <b-form-input
-          id="input-4"
-          v-model="dishData.fats"
-          type="number"
-          required
-          placeholder="Fats"
-        ></b-form-input>
+        <b-form-input id="input-2" v-model="dishData.protein" type="number" placeholder="Proteins"></b-form-input>
+        <b-form-input id="input-3" v-model="dishData.carbo" type="number" placeholder="Carbs"></b-form-input>
+        <b-form-input id="input-3" v-model="dishData.fat" type="number" placeholder="Fats"></b-form-input>
       </b-form-group>
     </b-form>
     <b-button type="submit" @click="onSubmit" variant="primary">Submit</b-button>
@@ -33,7 +27,7 @@ export default {
 	methods: {
 		onSubmit: function() {
 			if (this.dishData._id == null) {
-				let link = "https://apifitvue.ew.r.appspot.com/users/"
+				let link = "https://apifitvue.ew.r.appspot.com/dishes/"
 				axios
 					.post(link, this.dishData)
 					.then(function(response) {
@@ -44,7 +38,7 @@ export default {
 					})
 			} else {
 				let link =
-					"https://apifitvue.ew.r.appspot.com/users/" + this.dishData._id
+					"https://apifitvue.ew.r.appspot.com/dishes/" + this.dishData._id
 				axios
 					.put(link, this.dishData)
 					.then(function(response) {
