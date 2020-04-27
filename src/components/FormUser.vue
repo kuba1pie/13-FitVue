@@ -1,5 +1,6 @@
 <template>
   <div id="userForm">
+    bla bla
     <b-form @reset="onReset">
       <b-form-group id="input-name" label label-for="input-name" description>
         <b-form-input id="input-1" v-model="userData[0].name" type="text" placeholder="Name"></b-form-input>
@@ -40,7 +41,7 @@
         <b-form-select id="input-7" v-model="userData[0].activity" :options="activity" required></b-form-select>
       </b-form-group>
     </b-form>
-    <b-button type="submit" @click="onSubmit" variant="primary">Submit</b-button>
+    <!-- <b-button type="submit" @click="onSubmit" variant="primary">Submit</b-button> -->
   </div>
 </template>
 

@@ -10,20 +10,20 @@
         <!-- User data table -->
         <b-table striped hover stacked :items="userData"></b-table>
         <!-- Buttons -->
-        <b-button v-b-modal.modal-1 variant="info">Edit</b-button>
         <b-button v-b-toggle.collapse-2>Delete</b-button>
-        <!-- Form collapse -->
-        <b-collapse id="modal-1" class="border border-secondary p-5">
-          <!-- Form -->
-          <FormUser v-bind:userDataForm="userData" />
-        </b-collapse>
+
+        <b-button v-b-modal.modal-4>Edit User</b-button>
+
+        <b-modal id="modal-4" title="Edit User">
+					blablabla
+          <FormUser v-bind:userDataForm="this.userData" />
+        </b-modal>
         <!-- Delete collapse -->
-        <b-collapse id="collapse-2" class="border border-secondary p-5">
+<!--         <b-modal id="modal-2" class="border border-secondary p-5">
           Do you want to delete this user?
-          <!-- Buttons -->
           <b-button variant="danger" @click="onDelete">Yes</b-button>
-          <b-button v-b-toggle.collapse-2 variant="success">No</b-button>
-        </b-collapse>
+          <b-button v-b-modal.modal-2 variant="success">No</b-button>
+        </b-modal> -->
       </b-tab>
     </b-tabs>
   </div>
