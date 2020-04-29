@@ -1,6 +1,5 @@
 <template>
   <div id="userForm">
-    bla bla
     <b-form @reset="onReset">
       <b-form-group id="input-name" label label-for="input-name" description>
         <b-form-input
@@ -116,7 +115,9 @@ export default {
     onExample() {},
   },
   props: {
-    userData: Object,
+    userData: {
+      type: Array,
+    },
   },
 }
 </script>

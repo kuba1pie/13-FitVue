@@ -2,7 +2,6 @@
   <div>
     <!-- Page title -->
     <h1>User</h1>
-
     <div class="tabs">
       <b-nav tabs>
         <b-nav-item to="#diet">Diet</b-nav-item>
@@ -25,14 +24,15 @@
           <!-- User data table -->
           <b-table striped hover stacked :items="userData"></b-table>
           <!-- Buttons -->
-          <b-button v-b-toggle.collapse-2>Delete</b-button>
+          <b-button v-b-modal.modal-5>Delete</b-button>
 
           <b-button v-b-modal.modal-4>Edit User</b-button>
 
           <b-modal id="modal-4" title="Edit User">
-            blablabla
-            <FormUser v-bind:userDataForm="this.userData" />
+            <FormUser v-bind:userData="this.userData" />
           </b-modal>
+
+          <b-modal id="modal-5" title="Delete User">Delete</b-modal>
           <!-- Delete collapse -->
           <!--         <b-modal id="modal-2" class="border border-secondary p-5">
           Do you want to delete this user?
@@ -56,7 +56,6 @@ export default {
   data() {
     return {
       userData: [],
-      userDataForm: userData,
       userID: this.$route.params.id,
     }
   },
@@ -67,7 +66,7 @@ export default {
   props: {
     date: {
       type: String,
-      default: "",
+      default: "16-04-2020",
     },
   },
   methods: {
@@ -80,8 +79,6 @@ export default {
       })
         .then(response => {
           this.userData = [...response.data]
-          //console.log(response.data)
-          //this.saveData()
         })
         .catch(err => {
           // Manage the state of the application if the request
