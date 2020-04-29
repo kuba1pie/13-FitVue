@@ -18,6 +18,7 @@ const routes = [
     path: "/user/:id",
     name: "user",
     component: User,
+    props: route => ({ date: route.query.d }),
   },
   {
     path: "/users",
