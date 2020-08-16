@@ -17,10 +17,7 @@
         >
           <Diet />
         </div>
-        <div
-          :class="['tab-pane', { active: $route.hash === '#profile' }]"
-          class="p-2"
-        >
+        <div :class="['tab-pane', { active: $route.hash === '#profile' }]" class="p-2">
           <!-- User data table -->
           <b-table striped hover stacked :items="userData"></b-table>
           <!-- Buttons -->
@@ -30,6 +27,13 @@
 
           <b-modal id="modal-4" title="Edit User">
             <FormUser v-bind:userData="this.userData" />
+            <template v-slot:modal-footer="{ ok, cancel, hide }">
+              <!-- Emulate built in modal footer ok and cancel button actions -->
+              <b-button size="sm" variant="success" @click="ok()">OK</b-button>
+              <b-button size="sm" variant="danger" @click="cancel()">Cancel</b-button>
+              <!-- Button with custom close trigger value -->
+              <b-button size="sm" variant="outline-secondary" @click="hide('forget')">Forget it</b-button>
+            </template>
           </b-modal>
 
           <b-modal id="modal-5" title="Delete User">Delete</b-modal>
@@ -52,51 +56,52 @@ import FormUser from "@/components/FormUser.vue"
 import Diet from "@/components/Diet.vue"
 
 export default {
-  name: "User",
-  data() {
-    return {
-      userData: [],
-      userID: this.$route.params.id,
-    }
-  },
-  components: {
-    Diet,
-    FormUser,
-  },
-  props: {
-    date: {
-      type: String,
-      default: "16-04-2020",
-    },
-  },
-  methods: {
-    // Get UserData from API by Id
-    loadData() {
-      axios({
-        method: "get",
-        url:
-          "https://apifitvue.ew.r.appspot.com/users/" + this.$route.params.id,
-      })
-        .then(response => {
-          this.userData = [...response.data]
-        })
-        .catch(err => {
-          // Manage the state of the application if the request
-          // has failed
-        })
-    },
-    // Delete User
-    onDelete() {
-      axios.delete(
-        "https://apifitvue.ew.r.appspot.com/users/" + this.$route.params.id
-      )
-      // Reload to /users after timeout due to serve response
-      setTimeout(() => this.$router.push({ path: "../users" }), 350)
-    },
-  },
-  mounted() {
-    this.loadData()
-  },
+	name: "User",
+	data() {
+		return {
+			userData: [],
+			userID: this.$route.params.id,
+		}
+	},
+	components: {
+		Diet,
+		FormUser,
+	},
+	props: {
+		date: {
+			type: String,
+			default: "16-04-2020",
+		},
+	},
+	methods: {
+		// Get UserData from API by Id
+		loadData() {
+			axios({
+				method: "get",
+				url:
+					"https://apifitvue.ew.r.appspot.com/users/" + this.$route.params.id,
+			})
+				.then(response => {
+					this.userData = [...response.data]
+					this.userData.birth = new Date(this.userData.birth)
+				})
+				.catch(err => {
+					// Manage the state of the application if the request
+					// has failed
+				})
+		},
+		// Delete User
+		onDelete() {
+			axios.delete(
+				"https://apifitvue.ew.r.appspot.com/users/" + this.$route.params.id
+			)
+			// Reload to /users after timeout due to serve response
+			setTimeout(() => this.$router.push({ path: "../users" }), 350)
+		},
+	},
+	mounted() {
+		this.loadData()
+	},
 }
 </script>
 <style></style>
