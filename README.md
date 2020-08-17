@@ -25,6 +25,15 @@ npm run build
 ```
 npm run lint
 ```
+### Deploy on firebase
+firebase login
+firebase init -> hosting -> dist -> don't overwrite index.html
+firebase use -> project name
+firebase deploy
+
+```
+npm run lint
+```
 
 ### Customize configuration
 
