@@ -71,7 +71,9 @@ export default {
 	methods: {
 		onReset() {},
 		onSubmit: function() {
-			if (this.userData._id == null) {
+			let idek = this.$route.params.id
+			console.log(idek)
+			if (idek == null) {
 				console.log(this.userData)
 				let link = "https://apifitvue.ew.r.appspot.com/users"
 				axios
@@ -84,18 +86,18 @@ export default {
 					})
 			} else {
 				let link =
-					"https://apifitvue.ew.r.appspot.com/users" + this.userData._id
+					"https://apifitvue.ew.r.appspot.com/users/" + idek
 				axios
-					.put(link, this.userData)
+					.put(link, this.userData[0])
 					.then(function(response) {
-						console.log("response" + response)
+						//console.log("response" + response)
 					})
 					.catch(function(error) {
 						console.log(error)
 					})
 			}
-
 			setTimeout(() => this.$emit("clicked", "someValue"), 350)
+
 		},
 		onExample() {},
 	},

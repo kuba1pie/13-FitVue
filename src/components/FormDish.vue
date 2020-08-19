@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     onSubmit: function() {
-      console.log("submit")
       console.log(this.dishData._id)
       if (this.dishData._id == null) {
         let link = "https://apifitvue.ew.r.appspot.com/dishes/"

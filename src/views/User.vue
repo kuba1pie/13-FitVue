@@ -24,15 +24,8 @@
           <b-button @click="showMsgBoxTwo">Delete User</b-button>
           <b-button v-b-modal.modal-4>Edit User</b-button>
 
-          <b-modal id="modal-4" title="Edit User">
+          <b-modal id="modal-4" title="Edit User" busy="true">
             <FormUser v-bind:userData="this.userData" />
-            <template v-slot:modal-footer="{ ok, cancel, hide }">
-              <!-- Emulate built in modal footer ok and cancel button actions -->
-              <b-button size="sm" variant="success" @click="ok()">OK</b-button>
-              <b-button size="sm" variant="danger" @click="cancel()">Cancel</b-button>
-              <!-- Button with custom close trigger value -->
-              <b-button size="sm" variant="outline-secondary" @click="hide('forget')">Forget it</b-button>
-            </template>
           </b-modal>
           <!-- Delete collapse -->
         </div>
