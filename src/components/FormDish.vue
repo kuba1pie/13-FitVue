@@ -34,7 +34,7 @@
         ></b-form-input>
       </b-form-group>
     </b-form>
-    <b-button type="submit" @click="onSubmit" variant="primary"
+    <b-button type="submit" @click="onSubmit()" variant="primary"
       >Submit</b-button
     >
   </div>
@@ -53,6 +53,8 @@ export default {
   },
   methods: {
     onSubmit: function() {
+      console.log("submit")
+      console.log(this.dishData._id)
       if (this.dishData._id == null) {
         let link = "https://apifitvue.ew.r.appspot.com/dishes/"
         axios
@@ -82,6 +84,7 @@ export default {
   props: {
     dishData: {
       default: () => firstDish,
+      type: Array,
     },
   },
 }

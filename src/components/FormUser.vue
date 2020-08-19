@@ -40,7 +40,7 @@
         <b-form-select id="input-7" v-model="userData[0].activity" :options="activity" required></b-form-select>
       </b-form-group>
     </b-form>
-    <!-- <b-button type="submit" @click="onSubmit" variant="primary">Submit</b-button> -->
+    <b-button type="submit" @click="onSubmit" variant="primary">Submit</b-button>
   </div>
 </template>
 
@@ -75,7 +75,7 @@ export default {
 				console.log(this.userData)
 				let link = "https://apifitvue.ew.r.appspot.com/users"
 				axios
-					.post(link, this.userData)
+					.post(link, this.userData[0])
 					.then(function(response) {
 						console.log(response)
 					})
@@ -102,6 +102,10 @@ export default {
 	props: {
 		userData: {
 			type: Array,
+			default: function() {
+				return [{name: null}, {lastname: null}, {email: null}, {age: null}, {gender: null}, {weight: null}, {height: null}, {activity: null}, {value: null}]
+			},
+			/* default: [name: null, lastname: null, email: null, age: null, gender: null, weight: null, height: null, activity: null, value: null], */
 		},
 	},
 }

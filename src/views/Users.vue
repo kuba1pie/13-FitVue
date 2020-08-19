@@ -15,7 +15,8 @@
     <!-- Add user collapse -->
     <b-modal id="modal-1" class="border border-secondary p-5">
       <!-- Add user form -->
-      <FormUser @clicked="onClickChild" />
+      <!-- <FormUser @clicked="onClickChild" /> -->
+      <FormUser />
       <!-- Add user buttons -->
     </b-modal>
   </div>

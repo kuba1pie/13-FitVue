@@ -21,8 +21,7 @@
           <!-- User data table -->
           <b-table striped hover stacked :items="userData"></b-table>
           <!-- Buttons -->
-          <b-button v-b-modal.modal-5>Delete</b-button>
-
+          <b-button @click="showMsgBoxTwo">Delete User</b-button>
           <b-button v-b-modal.modal-4>Edit User</b-button>
 
           <b-modal id="modal-4" title="Edit User">
@@ -35,14 +34,7 @@
               <b-button size="sm" variant="outline-secondary" @click="hide('forget')">Forget it</b-button>
             </template>
           </b-modal>
-
-          <b-modal id="modal-5" title="Delete User">Delete</b-modal>
           <!-- Delete collapse -->
-          <!--         <b-modal id="modal-2" class="border border-secondary p-5">
-          Do you want to delete this user?
-          <b-button variant="danger" @click="onDelete">Yes</b-button>
-          <b-button v-b-modal.modal-2 variant="success">No</b-button>
-          </b-modal>-->
         </div>
       </div>
     </div>
@@ -91,12 +83,31 @@ export default {
 				})
 		},
 		// Delete User
-		onDelete() {
-			axios.delete(
-				"https://apifitvue.ew.r.appspot.com/users/" + this.$route.params.id
-			)
-			// Reload to /users after timeout due to serve response
-			setTimeout(() => this.$router.push({ path: "../users" }), 350)
+		showMsgBoxTwo() {
+			this.boxTwo = ""
+			this.$bvModal
+				.msgBoxConfirm("Please confirm that you want to delete user.", {
+					title: "Please Confirm",
+					size: "sm",
+					buttonSize: "sm",
+					okVariant: "danger",
+					okTitle: "YES",
+					cancelTitle: "NO",
+					footerClass: "p-2",
+					hideHeaderClose: false,
+					centered: true,
+				})
+				.then(value => {
+					this.boxTwo = value
+					axios.delete(
+						"https://apifitvue.ew.r.appspot.com/users/" + this.$route.params.id
+					)
+					// Reload to /users after timeout due to serve response
+					setTimeout(() => this.$router.push({ path: "../users" }), 350)
+				})
+				.catch(err => {
+					// An error occurred
+				})
 		},
 	},
 	mounted() {
