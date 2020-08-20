@@ -53,8 +53,9 @@ export default {
   },
   methods: {
     onSubmit: function() {
+      let idek = this.$route.params.id
       console.log(this.dishData._id)
-      if (this.dishData._id == null) {
+      if (idek == null) {
         let link = "https://apifitvue.ew.r.appspot.com/dishes/"
         axios
           .post(link, this.dishData)
@@ -66,7 +67,7 @@ export default {
           })
       } else {
         let link =
-          "https://apifitvue.ew.r.appspot.com/dishes/" + this.dishData._id
+          "https://apifitvue.ew.r.appspot.com/dishes/" + idek
         axios
           .put(link, this.dishData)
           .then(function(response) {
