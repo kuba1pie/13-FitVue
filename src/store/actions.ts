@@ -1,13 +1,22 @@
+import axios from "axios"
+
 export default {
-  removeLink: (context, link) => {
-    context.commit("REMOVE_LINK", link)
+  async fetchUsers(context) {
+    context.commit("SET_LOADING_USERS", "loading")
+    return axios
+      .get("https://fitvueapi.azurewebsites.net/users")
+      .then(response => {
+        context.commit("SET_LOADING_USERS", "done")
+        context.commit("SAVE_USERSLIST", response.data)
+      })
   },
-  removeAll({ commit }) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        commit("REMOVE_ALL")
-        resolve()
-      }, 1500)
-    })
+  async fetchDishes(context) {
+    context.commit("SET_LOADING_DISHES", "loading")
+    return axios
+      .get("https://fitvueapi.azurewebsites.net/dishes")
+      .then(response => {
+        context.commit("SET_LOADING_DISHES", "done")
+        context.commit("SAVE_DISHESLIST", response.data)
+      })
   },
 }

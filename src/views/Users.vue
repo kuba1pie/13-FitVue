@@ -1,8 +1,6 @@
 <template>
   <div class="user">
-    <!-- Page title -->
     <h1>Users table</h1>
-    <!-- Users table -->
     <b-table striped hover :items="usersList" :fields="fields">
       <template v-slot:cell(fullname)="data">
         <router-link :to="`/user/${data.item.userId}`">{{
@@ -10,21 +8,14 @@
         }}</router-link>
       </template>
     </b-table>
-    <!-- Table buttons -->
     <b-button v-b-modal.modal-1 class="m-1">Add new user</b-button>
-    <!-- Add user collapse -->
     <b-modal id="modal-1" class="border border-secondary p-5">
-      <!-- Add user form -->
-      <!-- <FormUser @clicked="onClickChild" /> -->
       <FormUser />
-      <!-- Add user buttons -->
     </b-modal>
   </div>
 </template>
 <script>
-import axios from "axios"
-import mysql from "mysql"
-import { mapState, mapMutations } from "vuex"
+import { mapState, mapMutations, mapActions } from "vuex"
 import FormUser from "@/components/FormUser.vue"
 
 export default {
@@ -61,53 +52,18 @@ export default {
     ...mapState(["usersData", "dishesList"]),
   },
   methods: {
-    ...mapMutations(["SAVE_DATA", "SAVE_DISHLIST"]),
-    onClickChild() {
-      this.loadData()
-    },
-    saveData: function() {
-      this.SAVE_DATA(this.usersList)
-    },
-    saveDishesList: function() {
-      this.SAVE_DISHLIST(this.dishesList)
-    },
+    ...mapMutations(["SAVE_USERSLIST"]),
+    ...mapActions(["fetchUsers"]),
     fullName(value) {
       return `${value.name} ${value.lastname}`
     },
-    loadData() {
-      axios({
-        method: "get",
-        url: "https://apifitvue.ew.r.appspot.com/users",
-      })
-        .then(response => {
-          this.usersList = [...response.data]
-          //this.saveData()
-          //localStorage.setItem("storedData", this.usersList)
-        })
-        .catch(err => {
-          // Manage the state of the application if the request
-          // has failed
-        })
-    },
-    /*     loadDishesList() {
-      axios({
-        method: "get",
-        url: "https://apifitvue.ew.r.appspot.com/dishes",
-      })
-        .then(response => {
-          this.dishesList = [...response.data]
-          this.saveDishesList()
-          //localStorage.setItem("storedData", this.usersList)
-        })
-        .catch(err => {
-          // Manage the state of the application if the request
-          // has failed
-        })
-    }, */
   },
-  mounted() {
-    this.loadData()
-    //this.loadDishesList()
+  async mounted() {
+    if (this.$store.state.usersList) {
+      this.usersList = this.$store.state.usersList
+    }
+    await this.fetchUsers()
+    this.usersList = this.$store.state.usersList
   },
   mutations: {
     addUsers(state, users) {

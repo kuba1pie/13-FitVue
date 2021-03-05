@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- Page title -->
-    <h1>Dish</h1>
-    <b-table striped hover stacked :items="dishData"></b-table>
+    <h1>Dish: {{ dishData.name }}</h1>
+    <b-table striped hover stacked :items="dishData[0]"></b-table>
     <!-- Buttons -->
     <b-button v-b-modal.modal-1 variant="info">Edit</b-button>
     <b-button v-b-toggle.collapse-2>Delete</b-button>
@@ -22,7 +22,7 @@
 import axios from "axios"
 import router from "vue-router"
 import FormDish from "@/components/FormDish.vue"
-import { mapState } from "vuex"
+import { mapState, mapGetters, mapActions } from "vuex"
 
 export default {
   name: "Dish",
@@ -36,39 +36,23 @@ export default {
     FormDish,
   },
   computed: {
-    ...mapState(["dishesData"]),
-    // Return datas from user from url path
-    /*     dishD: function() {
-      return this.dishesData.filter(x => x._id === this.dishID)
-    }, */
+    ...mapGetters(["getDishById"]),
   },
   methods: {
-    // Get UserData from API by Id
-    loadData() {
-      axios
-        .get(
-          "https://apifitvue.ew.r.appspot.com/dishes/" + this.$route.params.id
-        )
-        .then(response => {
-          this.dishData = response.data
-        })
-        .catch(err => {
-          // Manage the state of the application if the request
-          // has failed
-        })
-    },
-    // Delete User request
+    ...mapActions(["fetchDishes"]),
     onDelete() {
       axios.delete(
-        "https://apifitvue.ew.r.appspot.com/dishes/" + this.$route.params.id
+        "https://fitvueapi.azurewebsites.net/dishes/" + this.$route.params.id
       )
-      // Reload to /users after timeout due to serve response
       setTimeout(() => this.$router.push({ path: "../dishes" }), 350)
     },
   },
-  mounted() {
-    this.loadData()
+  async mounted() {
+    if (this.$store.state.dishesList) {
+      this.dishData = this.getDishById(Number(this.$route.params.id))
+    }
+    await this.fetchDishes()
+    this.dishData = this.getDishById(Number(this.$route.params.id))
   },
 }
 </script>
-<style></style>

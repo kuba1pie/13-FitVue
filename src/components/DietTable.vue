@@ -49,7 +49,7 @@ export default {
     loadData() {
       axios
         .get(
-          "https://apifitvue.ew.r.appspot.com/users/" +
+          "https://fitvueapi.azurewebsites.net/users/" +
             this.userId +
             "/meals/" +
             this.date

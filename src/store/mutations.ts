@@ -1,23 +1,14 @@
 export default {
-  /* ADD_LINK: (state, link) => {
-		state.links.push(link)
-	},
-	ADD_FORM: (state, form) => {
-		state.formularze.push(form)
-	},
-	REMOVE_LINK: (state, link) => {
-		state.links.splice(link, 1)
-	},
-	REMOVE_ALL: state => {
-		state.links = []
-	}, */
-  SAVE_DATA: (state, data) => {
-    state.usersData = data
+  SAVE_USERSLIST: (state, data) => {
+    state.usersList = data
   },
-  SAVE_DISH: (state, data) => {
-    state.dishesData = data
-  },
-  SAVE_DISHLIST: (state, data) => {
+  SAVE_DISHESLIST: (state, data) => {
     state.dishesList = data
   },
+	SET_LOADING_DISHES(state, status) {
+		state.dishesStatus = status
+	},
+	SET_LOADING_USERS(state, status) {
+		state.usersStatus = status
+	}
 }

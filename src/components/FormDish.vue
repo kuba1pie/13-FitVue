@@ -56,7 +56,7 @@ export default {
       let idek = this.$route.params.id
       console.log(this.dishData._id)
       if (idek == null) {
-        let link = "https://apifitvue.ew.r.appspot.com/dishes/"
+        let link = "https://fitvueapi.azurewebsites.net/dishes/"
         axios
           .post(link, this.dishData)
           .then(function(response) {
@@ -66,8 +66,7 @@ export default {
             console.log(error)
           })
       } else {
-        let link =
-          "https://apifitvue.ew.r.appspot.com/dishes/" + idek
+        let link = "https://fitvueapi.azurewebsites.net/dishes/" + idek
         axios
           .put(link, this.dishData)
           .then(function(response) {

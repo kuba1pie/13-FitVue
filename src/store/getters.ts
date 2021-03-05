@@ -1,11 +1,11 @@
 export default {
-  /* countLinks: state => {
-		return state.links.length
-	}, */
-  usersData: state => {
-    return state.usersData
+  countUsers: state => {
+    return state.usersList.length
   },
-  dishesList: state => {
-    return state.dishesList
-  },
+  countDishes: state => {
+		return state.dishesList.length
+	},
+  getDishById: (state) => (id) => {
+    return state.dishesList.find(dish => (dish.dishId) === id)
+  }
 }

@@ -14,7 +14,6 @@ const actions = {}
 // mutations
 const mutations = {
   ADD_FORM: (state, form) => {
-    //state.formularze.push(form)
     state.forms.push(form)
   },
 }

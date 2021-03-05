@@ -17,9 +17,8 @@
 </template>
 
 <script lang="ts">
-import axios from "axios"
 import FormDish from "@/components/FormDish.vue"
-import { mapState, mapMutations } from "vuex"
+import { mapState, mapMutations, mapActions } from "vuex"
 export default {
   name: "Dishes",
   data: function() {
@@ -35,53 +34,15 @@ export default {
     ...mapState(["dishesData"]),
   },
   methods: {
-    ...mapMutations(["SAVE_DISH"]),
-    saveData: function() {
-      this.SAVE_DISH(this.dishesList)
-    },
-    onClickChild() {
-      this.loadData()
-    },
-    loadData() {
-      axios({
-        method: "get",
-        url: "https://apifitvue.ew.r.appspot.com/dishes",
-      })
-        .then(response => {
-          this.dishesList = [...response.data]
-          //console.log(response.data)
-          //this.saveData()
-        })
-        .catch(err => {
-          // Manage the state of the application if the request
-          // has failed
-        })
-    },
+    ...mapMutations(["SAVE_DISHESLIST"]),
+    ...mapActions(["fetchDishes"]),
   },
-  mounted() {
-    this.loadData()
+  async mounted() {
+    if (this.$store.state.dishesList) {
+      this.dishesList = this.$store.state.dishesList
+    }
+    await this.fetchDishes()
+    this.dishesList = this.$store.state.dishesList
   },
-  /* 	mutations: {
-		addUsers(state, dish) {
-			state.dishesData.push(dish)
-		},
-	}, */
 }
 </script>
-
-<style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

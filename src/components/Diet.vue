@@ -67,7 +67,7 @@ export default {
     loadData() {
       axios({
         method: "get",
-        url: "https://apifitvue.ew.r.appspot.com/dishes",
+        url: "https://fitvueapi.azurewebsites.net/dishes",
       })
         .then(response => {
           this.dishesList = [...response.data]

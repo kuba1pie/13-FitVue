@@ -111,7 +111,7 @@ export default {
     loadData() {
       axios({
         method: "get",
-        url: "https://apifitvue.ew.r.appspot.com/dishes",
+        url: "https://fitvueapi.azurewebsites.net/dishes",
       })
         .then(response => {
           this.dishesList = [...response.data]
@@ -124,7 +124,7 @@ export default {
         })
     },
     onSubmit: function() {
-      let link = "https://apifitvue.ew.r.appspot.com/meals/"
+      let link = "https://fitvueapi.azurewebsites.net/meals/"
       axios
         .post(link, this.form)
         .then(function(response) {
