@@ -85,6 +85,9 @@ export default {
       usersList: [],
     }
   },
+  computed: {
+    ...mapGetters(["getUserById"]),
+  },
   methods: {
     onReset() {},
     onSubmit: function() {
@@ -116,6 +119,13 @@ export default {
     },
     onExample() {},
   },
+  async mounted() {
+    if (this.$store.state.usersList) {
+      this.userData = this.getUserById(Number(this.$route.params.id))
+    }
+    await this.fetchUsers()
+    this.userData = this.getUserById(Number(this.$route.params.id))
+  },
   props: {
     userData: {
       type: Array,
@@ -137,22 +147,3 @@ export default {
   },
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="sass">
-input
-  text-align: center
-h3
-  margin: 40px 0 0
-
-ul
-  list-style-type: none
-  padding: 0
-
-li
-  display: inline-block
-  margin: 0 10px
-
-a
-  color: #42b983
-</style>

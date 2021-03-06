@@ -22,7 +22,7 @@
           class="p-2"
         >
           <!-- User data table -->
-          <b-table striped hover stacked :items="userData"></b-table>
+          <b-table striped hover stacked :items="userData[0]"></b-table>
           <!-- Buttons -->
           <b-button @click="showMsgBoxTwo">Delete User</b-button>
           <b-button v-b-modal.modal-4>Edit User</b-button>
@@ -41,6 +41,8 @@
 import axios from "axios"
 import router from "vue-router"
 import FormUser from "@/components/FormUser.vue"
+import { mapState, mapMutations, mapGetters, mapActions } from "vuex"
+
 import Diet from "@/components/Diet.vue"
 
 export default {
@@ -55,6 +57,9 @@ export default {
     Diet,
     FormUser,
   },
+  computed: {
+    ...mapGetters(["getUserById"]),
+  },
   props: {
     date: {
       type: String,
@@ -63,21 +68,7 @@ export default {
   },
   methods: {
     // Get UserData from API by Id
-    loadData() {
-      axios({
-        method: "get",
-        url:
-          "https://fitvueapi.azurewebsites.net/users/" + this.$route.params.id,
-      })
-        .then(response => {
-          this.userData = [...response.data]
-          this.userData.birth = new Date(this.userData.birth)
-        })
-        .catch(err => {
-          // Manage the state of the application if the request
-          // has failed
-        })
-    },
+    ...mapActions(["fetchUsers"]),
     // Delete User
     showMsgBoxTwo() {
       this.boxTwo = ""
@@ -106,8 +97,12 @@ export default {
         })
     },
   },
-  mounted() {
-    this.loadData()
+  async mounted() {
+    if (this.$store.state.usersList) {
+      this.userData = this.getUserById(Number(this.$route.params.id))
+    }
+    await this.fetchUsers()
+    this.userData = this.getUserById(Number(this.$route.params.id))
   },
 }
 </script>

@@ -1,6 +1,7 @@
 <template>
   <div class="user">
     <h1>Users table</h1>
+    <div class="loading" v-if="state">{{ this.$store.state.usersStatus }}</div>
     <b-table striped hover :items="usersList" :fields="fields">
       <template v-slot:cell(fullname)="data">
         <router-link :to="`/user/${data.item.userId}`">{{
@@ -22,6 +23,7 @@ export default {
   name: "Users",
   data: function() {
     return {
+      state: false,
       usersList: [],
       fields: [
         {
@@ -59,11 +61,19 @@ export default {
     },
   },
   async mounted() {
+    if (this.$store.state.usersStatus === "loading") {
+      state = true
+    }
     if (this.$store.state.usersList) {
       this.usersList = this.$store.state.usersList
     }
     await this.fetchUsers()
     this.usersList = this.$store.state.usersList
+  },
+  check() {
+    if (this.$store.state.usersStatus === "loading") {
+      state = true
+    }
   },
   mutations: {
     addUsers(state, users) {
