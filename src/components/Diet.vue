@@ -8,7 +8,7 @@
           v-b-modal.modal-1
           @click="info(row.item, row.index, $event.target)"
           class="mr-1"
-          >Add a dish123123</b-button
+          >Add a dish</b-button
         >
       </template>
     </b-table>
