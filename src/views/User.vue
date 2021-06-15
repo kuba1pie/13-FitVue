@@ -1,7 +1,6 @@
 <template>
   <div>
-    <!-- Page title -->
-    <h1>User</h1>
+    <h1>User: {{ userData.name }}</h1>
     <div class="tabs">
       <b-nav tabs>
         <b-nav-item to="#diet">Diet</b-nav-item>
@@ -66,6 +65,13 @@ export default {
       default: "16-04-2020",
     },
   },
+  async mounted() {
+    if (this.$store.state.usersList) {
+      this.userData = this.getUserById(Number(this.$route.params.id))
+    }
+    await this.fetchUsers()
+    this.userData = this.getUserById(Number(this.$route.params.id))
+  },
   methods: {
     // Get UserData from API by Id
     ...mapActions(["fetchUsers"]),
@@ -96,13 +102,6 @@ export default {
           // An error occurred
         })
     },
-  },
-  async mounted() {
-    if (this.$store.state.usersList) {
-      this.userData = this.getUserById(Number(this.$route.params.id))
-    }
-    await this.fetchUsers()
-    this.userData = this.getUserById(Number(this.$route.params.id))
   },
 }
 </script>
